@@ -182,9 +182,9 @@ $baby-blue: #f8faff;
   // border-radius: 6px;
   // border-color: #333;
   position: absolute;
-  top: 50%;
-  left: -40%;
-  transform: translate(-50%, -50%) scale(0.1);
+  // top: 50%;
+  // left: -40%;
+  //transform: translate(-50%, -50%) scale(0.1);
   text-align: center;
   padding: 0 30px 30px;
   color: #333;
@@ -195,7 +195,7 @@ $baby-blue: #f8faff;
 .open-popup {
   visibility: visible;
   top: 100%;
-  transform: translate(-70%, -70%) scale(1);
+  //transform: translate(-70%, -70%) scale(1);
 }
 
 .popup img {
