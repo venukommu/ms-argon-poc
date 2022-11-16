@@ -176,16 +176,16 @@ hr {
 }
 .popup {
   width: 400px;
-  background: #fff;
+  background: #16b3ac;
   border-radius: 6px;
-  border-color: #333;
+  // border-color: #333;
   position: absolute;
   top: 50%;
   left: -40%;
   transform: translate(-50%,-50%) scale(0.1);
   text-align: center;
   padding: 0 30px 30px;
-  color: #333;
+  color: #fff;
   visibility: hidden;
   transition: transform 0.4s, top 0.4s;
 }
