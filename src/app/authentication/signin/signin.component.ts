@@ -44,7 +44,15 @@ export class SigninComponent implements OnInit {
     });
   }
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    for (var i = 0; i < this.bubblyButtons.length; i++) {
+      this.bubblyButtons[i].addEventListener(
+        "click",
+        this.animateButton,
+        false
+      );
+    }
+  }
 
   submitForm() {
     console.log("hello");
@@ -78,4 +86,17 @@ export class SigninComponent implements OnInit {
   showHidePassword() {
     this.showPassword = !this.showPassword;
   }
+
+  animateButton(e) {
+    e.preventDefault;
+    //reset animation
+    e.target.classList.remove("animate");
+
+    e.target.classList.add("animate");
+    setTimeout(function () {
+      e.target.classList.remove("animate");
+    }, 700);
+  }
+
+  bubblyButtons = document.getElementsByClassName("button");
 }

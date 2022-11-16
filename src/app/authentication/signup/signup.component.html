@@ -155,12 +155,16 @@
               >
             </div>
           </div>
-          <mat-checkbox class="form-check">
+          <!-- <mat-checkbox class="form-check">
             I agree to the
             <a href="#something" class="text-info">terms and conditions</a>.
-          </mat-checkbox>
+          </mat-checkbox> -->
+          <div style="display: flex; flex-direction: row; margin-bottom: 20px">
+            <input type="checkbox" style="margin-right: 20px" />
+            <a href="#something" class="text-info">Terms And Conditions</a>
+          </div>
           <div class="text-center">
-            <a (click)="goSignup()" class="btn btn-info btn-lg">Get Started</a>
+            <a (click)="goSignup()" class="button">Get Started</a>
           </div>
         </div>
       </div>

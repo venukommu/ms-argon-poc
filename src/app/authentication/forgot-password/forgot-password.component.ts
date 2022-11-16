@@ -7,7 +7,7 @@ import { FormArray, FormBuilder, FormGroup, Validators } from "@angular/forms";
 @Component({
   selector: "app-forgot-password",
   templateUrl: "./forgot-password.component.html",
-  styleUrls: ["./forgot-password.component.css"],
+  styleUrls: ["./forgot-password.component.scss"],
 })
 export class ForgotPasswordComponent implements OnInit {
   eValid: boolean = false;
@@ -79,5 +79,26 @@ export class ForgotPasswordComponent implements OnInit {
     return false;
   }
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    for (var i = 0; i < this.bubblyButtons.length; i++) {
+      this.bubblyButtons[i].addEventListener(
+        "click",
+        this.animateButton,
+        false
+      );
+    }
+  }
+
+  animateButton(e) {
+    e.preventDefault;
+    //reset animation
+    e.target.classList.remove("animate");
+
+    e.target.classList.add("animate");
+    setTimeout(function () {
+      e.target.classList.remove("animate");
+    }, 700);
+  }
+
+  bubblyButtons = document.getElementsByClassName("button");
 }

@@ -73,6 +73,14 @@ export class SignupComponent implements OnInit, OnDestroy {
     const body = document.getElementsByTagName("body")[0];
     body.classList.add("register-page");
     body.classList.add("off-canvas-sidebar");
+
+    for (var i = 0; i < this.bubblyButtons.length; i++) {
+      this.bubblyButtons[i].addEventListener(
+        "click",
+        this.animateButton,
+        false
+      );
+    }
   }
   ngOnDestroy() {
     const body = document.getElementsByTagName("body")[0];
@@ -109,4 +117,17 @@ export class SignupComponent implements OnInit, OnDestroy {
       // });
     }
   }
+
+  animateButton(e) {
+    e.preventDefault;
+    //reset animation
+    e.target.classList.remove("animate");
+
+    e.target.classList.add("animate");
+    setTimeout(function () {
+      e.target.classList.remove("animate");
+    }, 700);
+  }
+
+  bubblyButtons = document.getElementsByClassName("button");
 }
