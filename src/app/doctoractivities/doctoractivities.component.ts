@@ -14,4 +14,15 @@ export class DoctoractivitiesComponent implements OnInit {
     console.log("in the list");
     this.router.navigateByUrl("/physicians");
   }
+  openPopup() {
+    let popup = document.getElementById("popup");
+
+    popup.classList.add("open-popup");
+  }
+
+  closePopup() {
+    let popup = document.getElementById("popup");
+
+    popup.classList.remove("open-popup");
+  }
 }
