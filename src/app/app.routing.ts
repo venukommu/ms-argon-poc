@@ -17,6 +17,7 @@ import { EyespecialistComponent } from "./eyespecialist/eyespecialist.component"
 import { OrthopedicianComponent } from "./orthopedician/orthopedician.component";
 import { MigrainetreatmentdocsComponent } from "./migrainetreatmentdocs/migrainetreatmentdocs.component";
 import { DiabetestreatmentdocsComponent } from "./diabetestreatmentdocs/diabetestreatmentdocs.component";
+import { DoctoractivitiesComponent } from "./doctoractivities/doctoractivities.component";
 import { ProviderRegistrationComponent } from "./provider-registration/provider-registration.component";
 
 const routes: Routes = [
@@ -41,6 +42,10 @@ const routes: Routes = [
   {
     path: "diabetes-treatment-doctors",
     component: DiabetestreatmentdocsComponent,
+  },
+  {
+    path: "doctor-activities",
+    component: DoctoractivitiesComponent,
   },
   {
     path: "providers-registration",

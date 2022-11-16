@@ -29,6 +29,7 @@ import { EyespecialistComponent } from './eyespecialist/eyespecialist.component'
 import { DentistComponent } from './dentist/dentist.component';
 import { MigrainetreatmentdocsComponent } from './migrainetreatmentdocs/migrainetreatmentdocs.component';
 import { DiabetestreatmentdocsComponent } from './diabetestreatmentdocs/diabetestreatmentdocs.component';
+import { DoctoractivitiesComponent } from './doctoractivities/doctoractivities.component';
 import { ProviderRegistrationComponent } from './provider-registration/provider-registration.component';
 
 @NgModule({
@@ -49,6 +50,7 @@ import { ProviderRegistrationComponent } from './provider-registration/provider-
     DentistComponent,
     MigrainetreatmentdocsComponent,
     DiabetestreatmentdocsComponent,
+    DoctoractivitiesComponent,
     ProviderRegistrationComponent,
   ],
   imports: [
