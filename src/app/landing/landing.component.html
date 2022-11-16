@@ -25,7 +25,7 @@
             Doctor Online
           </h1>
           <p style="margin-left: 25px">To consult a Doctor</p>
-          <a href="" style="margin-left: 200px">
+          <a routerLink="#" style="margin-left: 200px">
             <img
               src="/assets/img/circle-right.png"
               style="height: 50px; object-fit: cover; margin-top: -100px"
@@ -43,7 +43,7 @@
         <div>
           <h1 style="margin-left: 25px; margin-top: 60px">Book An Ambulance</h1>
           <p style="margin-left: 25px">To Book an Ambulance</p>
-          <a href="" style="margin-left: 220px">
+          <a routerLink="#" style="margin-left: 220px">
             <img
               src="/assets/img/circle-right.png"
               style="height: 50px; object-fit: cover; margin-top: -100px"
@@ -76,15 +76,15 @@
                   style="display: flex"
                 >
                   <div class="px-2">
-                  <a routerLink="{{ spl.url }}">
-                    <img
-                      src="{{ spl.img }}"
-                      alt="{{ spl.title }}"
-                      [routerLink]="['{{ spl.link }}']"
-                      routerLinkActive="router-link-active"
-                      class="img-center img-responsive"
-                    />
-                  </a>
+                    <a routerLink="{{ spl.url }}">
+                      <img
+                        src="{{ spl.img }}"
+                        alt="{{ spl.title }}"
+                        [routerLink]="['{{ spl.link }}']"
+                        routerLinkActive="router-link-active"
+                        class="img-center img-responsive"
+                      />
+                    </a>
                     <div class="pt-4">
                       <h5 class="title">
                         <span class="d-block mb-1 text-center">{{
