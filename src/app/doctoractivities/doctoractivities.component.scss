@@ -177,24 +177,24 @@ $baby-blue: #f8faff;
   }
 }
 .popup {
-  width: 400px;
+  //width: 200px;
   background: #fff;
   // border-radius: 6px;
   // border-color: #333;
-  position: absolute;
+  //position: absolute;
   // top: 50%;
   // left: -40%;
-  //transform: translate(-50%, -50%) scale(0.1);
+  // transform: translate(-50%, -50%) scale(0.1);
   text-align: center;
-  padding: 0 30px 30px;
+  //padding: 0 30px 30px;
   color: #333;
   visibility: hidden;
-  transition: transform 0.4s, top 0.4s;
+  //transition: transform 0.4s, top 0.4s;
 }
 
 .open-popup {
   visibility: visible;
-  top: 100%;
+  //top: 100%;
   //transform: translate(-70%, -70%) scale(1);
 }
 
@@ -212,7 +212,7 @@ $baby-blue: #f8faff;
 }
 
 .popup button {
-  width: 100%;
+  width: 20%;
   margin-top: 50px;
   padding: 10px 0;
   background: #6fd649;
