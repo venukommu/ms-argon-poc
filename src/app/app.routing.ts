@@ -9,7 +9,7 @@ import { LandingComponent } from "./landing/landing.component";
 import { LoginComponent } from "./login/login.component";
 import { SelfcheckComponent } from "./selfcheck/selfcheck.component";
 import { DoctorsComponent } from "./doctors/doctors.component";
-import { PhysiciansComponent } from './physicians/physicians.component';
+import { PhysiciansComponent } from "./physicians/physicians.component";
 import { GynaecologistComponent } from "./gynaecologist/gynaecologist.component";
 import { PediatricianComponent } from "./pediatrician/pediatrician.component";
 import { DentistComponent } from "./dentist/dentist.component";
@@ -17,7 +17,7 @@ import { EyespecialistComponent } from "./eyespecialist/eyespecialist.component"
 import { OrthopedicianComponent } from "./orthopedician/orthopedician.component";
 import { MigrainetreatmentdocsComponent } from "./migrainetreatmentdocs/migrainetreatmentdocs.component";
 import { DiabetestreatmentdocsComponent } from "./diabetestreatmentdocs/diabetestreatmentdocs.component";
-
+import { DoctoractivitiesComponent } from "./doctoractivities/doctoractivities.component";
 const routes: Routes = [
   { path: "home", component: HomeComponent },
   { path: "user-profile", component: ProfileComponent },
@@ -33,7 +33,7 @@ const routes: Routes = [
   { path: "ortho", component: OrthopedicianComponent },
   { path: "eyespecialist", component: EyespecialistComponent },
   { path: "dentist", component: DentistComponent },
-  
+
   {
     path: "migraine-treatment-doctors",
     component: MigrainetreatmentdocsComponent,
@@ -41,6 +41,10 @@ const routes: Routes = [
   {
     path: "diabetes-treatment-doctors",
     component: DiabetestreatmentdocsComponent,
+  },
+  {
+    path: "doctor-activities",
+    component: DoctoractivitiesComponent,
   },
 ];
 
