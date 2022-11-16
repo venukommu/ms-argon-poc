@@ -27,5 +27,6 @@ export class DoctoractivitiesComponent implements OnInit {
   closePopup() {
     let popup = document.getElementById("popup");
     popup.classList.remove("notNone");
+    this.router.navigateByUrl("/landing");
   }
 }
