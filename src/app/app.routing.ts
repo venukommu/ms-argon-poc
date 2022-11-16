@@ -18,6 +18,8 @@ import { OrthopedicianComponent } from "./orthopedician/orthopedician.component"
 import { MigrainetreatmentdocsComponent } from "./migrainetreatmentdocs/migrainetreatmentdocs.component";
 import { DiabetestreatmentdocsComponent } from "./diabetestreatmentdocs/diabetestreatmentdocs.component";
 import { DoctoractivitiesComponent } from "./doctoractivities/doctoractivities.component";
+import { ProviderRegistrationComponent } from "./provider-registration/provider-registration.component";
+
 const routes: Routes = [
   { path: "home", component: HomeComponent },
   { path: "user-profile", component: ProfileComponent },
@@ -33,7 +35,6 @@ const routes: Routes = [
   { path: "ortho", component: OrthopedicianComponent },
   { path: "eyespecialist", component: EyespecialistComponent },
   { path: "dentist", component: DentistComponent },
-
   {
     path: "migraine-treatment-doctors",
     component: MigrainetreatmentdocsComponent,
@@ -45,6 +46,10 @@ const routes: Routes = [
   {
     path: "doctor-activities",
     component: DoctoractivitiesComponent,
+  },
+  {
+    path: "providers-registration",
+    component: ProviderRegistrationComponent,
   },
 ];
 
