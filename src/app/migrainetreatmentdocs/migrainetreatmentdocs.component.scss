@@ -22,7 +22,7 @@ sectio .container1 {
   display: flex;
   padding-bottom: 1.2em;
   border: none;
-  border-bottom: 1px solid lightgrey;
+  // border-bottom: 1px solid lightgrey;
   font-family: "Poppins", sans-serif;
 }
 
@@ -164,4 +164,9 @@ $baby-blue: #f8faff;
 }
 .card-text {
   margin-top: -3%;
+}
+
+hr {
+  width: 83%;
+  margin-right: 10%;
 }
