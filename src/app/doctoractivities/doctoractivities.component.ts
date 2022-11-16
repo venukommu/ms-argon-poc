@@ -9,20 +9,23 @@ import { Router } from "@angular/router";
 export class DoctoractivitiesComponent implements OnInit {
   constructor(private router: Router) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    let popup = document.getElementById("popup");
+    popup.classList.add("none");
+  }
+
   getSpecialitiesList() {
     console.log("in the list");
     this.router.navigateByUrl("/physicians");
   }
+
   openPopup() {
     let popup = document.getElementById("popup");
-
-    popup.classList.add("open-popup");
+    popup.classList.add("notNone");
   }
 
   closePopup() {
     let popup = document.getElementById("popup");
-
-    popup.classList.remove("open-popup");
+    popup.classList.remove("notNone");
   }
 }

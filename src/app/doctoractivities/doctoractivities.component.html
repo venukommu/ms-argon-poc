@@ -420,29 +420,13 @@
       </button>
     </div>
   </div>
-  <div class="px-4 text-center">
-    <div class="col-md-12">
-      <div class="card-body text-center">
-        <div class="pt-5">
-          <button class="button1" type="submit" (click)="openPopup()">
-            Submit
-          </button>
-          <div class="popup" id="popup">
-            <!-- <img
-              width="80"
-              height="80"
-              src="../../assets/img/tick.png"
-              alt=""
-            /> -->
-            <h3>Thank you</h3>
-            <p>Your profile have been successfully submitted .</p>
+  <button class="button1" type="submit" (click)="openPopup()">Submit</button>
+</div>
 
-            <button style="margin-top: 0" type="button" (click)="closePopup()">
-              OK
-            </button>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
+<div class="popup" id="popup">
+  <!-- <img width="80" height="80" src="../../assets/img/tick.png" alt="" /> -->
+  <h3>Thank you</h3>
+  <p>Your profile have been successfully submitted .</p>
+
+  <button style="margin-top: 0" type="button" (click)="closePopup()">OK</button>
 </div>
