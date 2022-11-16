@@ -2,7 +2,7 @@
   <div class="main_conatainer"></div>
 </main>
 <div class="container1">
-  <div class="WC_PrimarySymptom__Title">What is your specialization?</div>
+  <div class="WC_PrimarySymptom__Title">Doctor Activities</div>
   <div class="WC_SymptomGroup__TopBar">
     <div class="WC_SymptomGroup__TopBar__Title">
       Choose you're specialisation
@@ -18,6 +18,16 @@
       <button type="button" class="btn btn-outline-info btn-sm button-img">
         <div class="WC_SymptomPill">
           <div class="WC_SymptomPill__Image">
+            <div class="custom-control custom-checkbox mb-4">
+              <input
+                class="custom-control-input"
+                id="customCheck1"
+                type="checkbox"
+              />
+              <label class="custom-control-label" for="customCheck1">
+                <!-- <span>Unchecked</span> -->
+              </label>
+            </div>
             <img
               src="/assets/img/hospital/symptoms/fever.png"
               class="WC_SymptomPill__Image__Img"
@@ -29,6 +39,16 @@
       <button class="btn btn-outline-info btn-sm button-img">
         <div class="WC_SymptomPill">
           <div class="WC_SymptomPill__Image">
+            <div class="custom-control custom-checkbox mb-4">
+              <input
+                class="custom-control-input"
+                id="customCheck2"
+                type="checkbox"
+              />
+              <label class="custom-control-label" for="customCheck2">
+                <!-- <span>Unchecked</span> -->
+              </label>
+            </div>
             <img
               src="/assets/img/hospital/symptoms/brain.png"
               class="WC_SymptomPill__Image__Img"
@@ -40,6 +60,16 @@
       <button class="btn btn-outline-info btn-sm button-img">
         <div class="WC_SymptomPill">
           <div class="WC_SymptomPill__Image">
+            <div class="custom-control custom-checkbox mb-4">
+              <input
+                class="custom-control-input"
+                id="customCheck3"
+                type="checkbox"
+              />
+              <label class="custom-control-label" for="customCheck3">
+                <!-- <span>Unchecked</span> -->
+              </label>
+            </div>
             <img
               src="/assets/img/hospital/symptoms/nose.png"
               class="WC_SymptomPill__Image__Img"
@@ -51,6 +81,16 @@
       <button class="btn btn-outline-info btn-sm button-img">
         <div class="WC_SymptomPill">
           <div class="WC_SymptomPill__Image">
+            <div class="custom-control custom-checkbox mb-4">
+              <input
+                class="custom-control-input"
+                id="customCheck4"
+                type="checkbox"
+              />
+              <label class="custom-control-label" for="customCheck4">
+                <!-- <span>Unchecked</span> -->
+              </label>
+            </div>
             <img
               src="/assets/img/hospital/symptoms/cough.png"
               class="WC_SymptomPill__Image__Img"
@@ -62,6 +102,16 @@
       <button class="btn btn-outline-info btn-sm button-img">
         <div class="WC_SymptomPill">
           <div class="WC_SymptomPill__Image">
+            <div class="custom-control custom-checkbox mb-4">
+              <input
+                class="custom-control-input"
+                id="customCheck5"
+                type="checkbox"
+              />
+              <label class="custom-control-label" for="customCheck5">
+                <!-- <span>Unchecked</span> -->
+              </label>
+            </div>
             <img
               src="/assets/img/hospital/symptoms/headache.png"
               class="WC_SymptomPill__Image__Img"
@@ -73,6 +123,16 @@
       <button class="btn btn-outline-info btn-sm button-img">
         <div class="WC_SymptomPill">
           <div class="WC_SymptomPill__Image">
+            <div class="custom-control custom-checkbox mb-4">
+              <input
+                class="custom-control-input"
+                id="customCheck6"
+                type="checkbox"
+              />
+              <label class="custom-control-label" for="customCheck6">
+                <!-- <span>Unchecked</span> -->
+              </label>
+            </div>
             <img
               src="/assets/img/hospital/symptoms/hairfall.png"
               class="WC_SymptomPill__Image__Img"
@@ -240,5 +300,8 @@
         </div>
       </button>
     </div>
+  </div>
+  <div class="px-4 text-center">
+    <button class="button1" (click)="getSpecialitiesList()">Submit</button>
   </div>
 </div>
