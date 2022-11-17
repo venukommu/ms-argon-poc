@@ -76,11 +76,11 @@
                   style="display: flex"
                 >
                   <div class="px-2">
-                    <a routerLink="{{ spl.url }}">
+                    <a (click)="splRoute(spl.url)">
                       <img
                         src="{{ spl.img }}"
                         alt="{{ spl.title }}"
-                        [routerLink]="['{{ spl.link }}']"
+                        
                         routerLinkActive="router-link-active"
                         class="img-center img-responsive"
                       />
@@ -187,7 +187,7 @@
                   style="display: flex"
                 >
                   <div class="px-2">
-                    <a routerLink="{{ daigno.url }}">
+                    <a (click)="splRoute(daigno.url)">
                       <img
                         src="{{ daigno.img }}"
                         alt="{{ daigno.title }}"

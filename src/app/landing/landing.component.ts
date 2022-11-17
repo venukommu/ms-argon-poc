@@ -200,4 +200,21 @@ export class LandingComponent implements OnInit {
   }
 
   bubblyButtons = document.getElementsByClassName("button");
+
+  splRoute(url){
+    console.log("url",url);
+    const naviagtionExtras: NavigationExtras = {
+      queryParams: {
+        routeName: url,
+      },
+    };
+    console.log("this.userName",this.userName);
+    if (this.userName === undefined) {
+      this.router.navigateByUrl("/signin", naviagtionExtras);
+    } else {
+      setTimeout(() => {
+        this.router.navigateByUrl(url);
+      }, 500);
+    }
+  }
 }
