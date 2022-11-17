@@ -2,6 +2,7 @@ import { Component, OnInit, OnDestroy } from "@angular/core";
 
 import { Validators, FormGroup } from "@angular/forms";
 import { FormBuilder } from "@angular/forms";
+import { Router } from "@angular/router";
 import { AuthService } from "src/app/services/auth.service";
 import { NotificationsService } from "src/app/services/notifications.service";
 import { ToolConstService } from "src/app/services/tool-const.service";
@@ -24,7 +25,8 @@ export class SignupComponent implements OnInit, OnDestroy {
     private formBuilder: FormBuilder,
     private authenticationService: AuthService,
     private notificationService: NotificationsService,
-    private toolConstService: ToolConstService
+    private toolConstService: ToolConstService,
+    private router: Router
   ) {
     this.register = this.formBuilder.group({
       fullName: ["", [Validators.required, Validators.minLength(3)]],
@@ -102,6 +104,8 @@ export class SignupComponent implements OnInit, OnDestroy {
         role: this.role,
       };
       console.log("body", body);
+      this.router.navigateByUrl("/signin");
+
       // this.authenticationService.signup(body).then((response) => {
       //   if (response === "true") {
       //     this.notificationService.showNotification(

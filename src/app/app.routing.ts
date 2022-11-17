@@ -21,13 +21,13 @@ import { DoctoractivitiesComponent } from "./doctoractivities/doctoractivities.c
 import { ProviderRegistrationComponent } from "./provider-registration/provider-registration.component";
 
 const routes: Routes = [
-  { path: "home", component: HomeComponent },
+  // { path: "home", component: HomeComponent },
   { path: "user-profile", component: ProfileComponent },
   // { path: "register", component: SignupComponent },
   { path: "landing", component: LandingComponent },
   { path: "doctors", component: DoctorsComponent },
   // { path: "login", component: LoginComponent },
-  { path: "", redirectTo: "home", pathMatch: "full" },
+  { path: "", redirectTo: "landing", pathMatch: "full" },
   { path: "selfcheck", component: SelfcheckComponent },
   { path: "physicians", component: PhysiciansComponent },
   { path: "gynaecologist", component: GynaecologistComponent },

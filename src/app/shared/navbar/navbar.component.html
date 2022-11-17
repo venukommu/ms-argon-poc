@@ -134,11 +134,11 @@
             <a [routerLink]="['/landing']" class="dropdown-item hover__banner"
               >Landing</a
             >
-            <a
+            <!-- <a
               [routerLink]="['/user-profile']"
               class="dropdown-item hover__banner"
               >Profile</a
-            >
+            > -->
             <!-- <a [routerLink]="['/doctor']" class="dropdown-item">Doctors</a>
             <a [routerLink]="['/login']" class="dropdown-item">Login</a>
             <a [routerLink]="['/register']" class="dropdown-item">Register</a> -->
@@ -182,7 +182,30 @@
           </a>
         </li>
       </ul>
-      <ul class="navbar-nav align-items-lg-center ml-lg-auto">
+      <ul
+        class="navbar-nav align-items-lg-center ml-lg-auto"
+        *ngIf="userName != undefined"
+        (click)="signout()"
+      >
+        <li class="nav-item d-none d-lg-block ml-lg-4">
+          <span
+            class="nav-link-inner--text hover__banner"
+            style="
+              display: flex;
+              flex-direction: row;
+              align-items: center;
+              cursor: pointer;
+            "
+          >
+            <i class="material-icons"> account_circle </i> &nbsp;
+            {{ userName }}</span
+          >
+        </li>
+      </ul>
+      <ul
+        class="navbar-nav align-items-lg-center ml-lg-auto"
+        *ngIf="userName === undefined"
+      >
         <li class="nav-item d-none d-lg-block ml-lg-4">
           <a [routerLink]="['/signin']" class="btn">
             <span

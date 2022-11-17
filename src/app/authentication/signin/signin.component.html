@@ -104,6 +104,39 @@
               </span>
             </div>
           </div>
+          <div class="bmd-form-group" style="padding-bottom: 10px">
+            <div class="input-group">
+              <div class="input-group-prepend">
+                <span class="input-group-text">
+                  <i class="material-icons"
+                    ><span class="material-symbols-outlined">
+                      location_on
+                    </span></i
+                  >
+                </span>
+              </div>
+              <input
+                type="tel"
+                class="form-control"
+                placeholder="Zip Code"
+                required
+                maxlength="6"
+                name="zipcode"
+                (input)="ValidateZip($event)"
+              />
+              <span
+                style="color: red; padding-left: 10px; font-size: small"
+                class="text-danger input-group"
+                *ngIf="
+                  login.controls['password'].hasError('required') &&
+                  (login.controls['password'].dirty ||
+                    login.controls['password'].touched)
+                "
+              >
+                This field is required
+              </span>
+            </div>
+          </div>
         </div>
         <div class="forgot_text">
           <a href="/forgot"> Forgot password? </a>

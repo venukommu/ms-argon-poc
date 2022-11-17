@@ -20,17 +20,17 @@ import { AuthenticationModule } from "./authentication/authentication.module";
 import { ToolConstService } from "./services/tool-const.service";
 import { NotificationsService } from "./services/notifications.service";
 import { SelfcheckComponent } from "./selfcheck/selfcheck.component";
-import { DoctorsComponent } from './doctors/doctors.component';
-import { PhysiciansComponent } from './physicians/physicians.component';
-import { GynaecologistComponent } from './gynaecologist/gynaecologist.component';
-import { PediatricianComponent } from './pediatrician/pediatrician.component';
-import { OrthopedicianComponent } from './orthopedician/orthopedician.component';
-import { EyespecialistComponent } from './eyespecialist/eyespecialist.component';
-import { DentistComponent } from './dentist/dentist.component';
-import { MigrainetreatmentdocsComponent } from './migrainetreatmentdocs/migrainetreatmentdocs.component';
-import { DiabetestreatmentdocsComponent } from './diabetestreatmentdocs/diabetestreatmentdocs.component';
-import { DoctoractivitiesComponent } from './doctoractivities/doctoractivities.component';
-import { ProviderRegistrationComponent } from './provider-registration/provider-registration.component';
+import { DoctorsComponent } from "./doctors/doctors.component";
+import { PhysiciansComponent } from "./physicians/physicians.component";
+import { GynaecologistComponent } from "./gynaecologist/gynaecologist.component";
+import { PediatricianComponent } from "./pediatrician/pediatrician.component";
+import { OrthopedicianComponent } from "./orthopedician/orthopedician.component";
+import { EyespecialistComponent } from "./eyespecialist/eyespecialist.component";
+import { DentistComponent } from "./dentist/dentist.component";
+import { MigrainetreatmentdocsComponent } from "./migrainetreatmentdocs/migrainetreatmentdocs.component";
+import { DiabetestreatmentdocsComponent } from "./diabetestreatmentdocs/diabetestreatmentdocs.component";
+import { DoctoractivitiesComponent } from "./doctoractivities/doctoractivities.component";
+import { ProviderRegistrationComponent } from "./provider-registration/provider-registration.component";
 
 @NgModule({
   declarations: [
@@ -56,7 +56,6 @@ import { ProviderRegistrationComponent } from './provider-registration/provider-
   imports: [
     BrowserModule,
     NgbModule,
-
     RouterModule,
     AppRoutingModule,
     HomeModule,

@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewChild, ElementRef } from "@angular/core";
-import { Router } from "@angular/router";
+import { NavigationExtras, Router } from "@angular/router";
 
 @Component({
   selector: "app-landing",
@@ -11,21 +11,49 @@ export class LandingComponent implements OnInit {
   @ViewChild("widgetsSymptoms") widgetsSymptoms: ElementRef;
   @ViewChild("widgetsDiagnosis") widgetsDiagnosis: ElementRef;
 
+  public userName: string = "";
+
   specialitiesImgs = [
-    { img: "./assets/img/hospital/physician.svg", title: "Physician", url: "/physicians"},
-    { img: "./assets/img/hospital/gynaecologist.svg", title: "Gynaecologist", url: "/gynaecologist" },
-    { img: "./assets/img/hospital/pediatrician.svg", title: "Pediatrician", url: "/pediatrician" },
-    { img: "./assets/img/hospital/orthopedician.svg", title: "Orthopedician", url: "/ortho" },
+    {
+      img: "./assets/img/hospital/physician.svg",
+      title: "Physician",
+      url: "/physicians",
+    },
+    {
+      img: "./assets/img/hospital/gynaecologist.svg",
+      title: "Gynaecologist",
+      url: "/gynaecologist",
+    },
+    {
+      img: "./assets/img/hospital/pediatrician.svg",
+      title: "Pediatrician",
+      url: "/pediatrician",
+    },
+    {
+      img: "./assets/img/hospital/orthopedician.svg",
+      title: "Orthopedician",
+      url: "/ortho",
+    },
     {
       img: "./assets/img/hospital/eye-specialist.svg",
-      title: "Eye Specialist", url: "/eyespecialist"
+      title: "Eye Specialist",
+      url: "/eyespecialist",
     },
     {
       img: "./assets/img/hospital/physiotherapist.svg",
-      title: "Physiotherapist", url: "#"
+      title: "Physiotherapist",
+      url: "#",
     },
-    { img: "./assets/img/hospital/dentist.svg", title: "Dentist", url: "/dentist" },
-    { img: "./assets/img/hospital/more.svg", title: "View all", url: "/doctors" },
+    {
+      img: "./assets/img/hospital/dentist.svg",
+      title: "Dentist",
+      url: "/dentist",
+    },
+    {
+      img: "./assets/img/hospital/more.svg",
+      title: "View all",
+      url: "/doctors",
+    },
   ];
 
   diagnosisImgs = [
@@ -97,21 +125,50 @@ export class LandingComponent implements OnInit {
   }
 
   symptomsRoute() {
-    setTimeout(() => {
-      this.router.navigateByUrl("/symptoms");
-    }, 500);
+    const naviagtionExtras: NavigationExtras = {
+      queryParams: {
+        routeName: "/symptoms",
+      },
+    };
+
+    if (this.userName === undefined) {
+      this.router.navigateByUrl("/signin", naviagtionExtras);
+    } else {
+      setTimeout(() => {
+        this.router.navigateByUrl("/symptoms");
+      }, 500);
+    }
   }
 
   specialitiesRoute() {
-    setTimeout(() => {
-      this.router.navigateByUrl("/doctors");
-    }, 500);
+    const naviagtionExtras: NavigationExtras = {
+      queryParams: {
+        routeName: "/doctors",
+      },
+    };
+    if (this.userName === undefined) {
+      this.router.navigateByUrl("/signin", naviagtionExtras);
+    } else {
+      setTimeout(() => {
+        this.router.navigateByUrl("/doctors");
+      }, 500);
+    }
   }
 
   diagnosisRoute() {
-    setTimeout(() => {
-      this.router.navigateByUrl("/selfcheck");
-    }, 500);
+    const naviagtionExtras: NavigationExtras = {
+      queryParams: {
+        routeName: "/selfcheck",
+      },
+    };
+
+    if (this.userName === undefined) {
+      this.router.navigateByUrl("/signin", naviagtionExtras);
+    } else {
+      setTimeout(() => {
+        this.router.navigateByUrl("/selfcheck");
+      }, 500);
+    }
   }
 
   scrollRightDiagno() {
@@ -126,6 +183,9 @@ export class LandingComponent implements OnInit {
         false
       );
     }
+
+    const currentUser = JSON.parse(localStorage.getItem("currentUser"));
+    this.userName = currentUser?.username.split("@")[0];
   }
 
   animateButton(e) {
