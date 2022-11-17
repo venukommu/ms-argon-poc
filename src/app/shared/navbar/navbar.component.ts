@@ -56,6 +56,7 @@ export class NavbarComponent implements OnInit {
 
   signout() {
     localStorage.removeItem("currentUser");
+    this.userName = undefined;
     this.router.navigateByUrl("/signin");
   }
 }
