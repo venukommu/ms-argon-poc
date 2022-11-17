@@ -83,6 +83,8 @@ export class SigninComponent implements OnInit {
       })
     );
 
+    // this.Nav.loginNav(this.login, this.zipcode);
+
     if (this.routeName === undefined) {
       this.router.navigateByUrl(`/landing`);
     } else {

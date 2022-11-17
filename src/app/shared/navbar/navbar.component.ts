@@ -32,8 +32,11 @@ export class NavbarComponent implements OnInit {
       this.lastPoppedUrl = ev.url;
     });
 
-    const currentUser = JSON.parse(localStorage.getItem("currentUser"));
-    this.userName = currentUser?.username.split("@")[0];
+    let timer = setInterval(() => {
+      const currentUser = JSON.parse(localStorage.getItem("currentUser"));
+      this.userName = currentUser?.username.split("@")[0];
+      if (this.userName) clearInterval(timer);
+    }, 1000);
   }
 
   isHome() {
