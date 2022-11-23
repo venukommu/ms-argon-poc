@@ -23,7 +23,7 @@ export class SignupComponent implements OnInit, OnDestroy {
 
   constructor(
     private formBuilder: FormBuilder,
-    private authenticationService: AuthService,
+    private authService: AuthService,
     private notificationService: NotificationsService,
     private toolConstService: ToolConstService,
     private router: Router
@@ -98,27 +98,28 @@ export class SignupComponent implements OnInit, OnDestroy {
       console.log("Role", this.role);
 
       const body = {
-        userName: this.register.value.fullName,
-        emailId: this.register.value.email,
+        fullName: this.register.value.fullName,
+        emailAddress: this.register.value.email,
+        mobileNumber : this.register.value.mobileNumber,
         password: this.register.value.password,
-        role: this.role,
+        role: this.role
       };
       console.log("body", body);
       this.router.navigateByUrl("/signin");
 
-      // this.authenticationService.signup(body).then((response) => {
-      //   if (response === "true") {
-      //     this.notificationService.showNotification(
-      //       this.toolConstService.getSuccessMessage().userCreated,
-      //       "success"
-      //     );
-      //   } else {
-      //     this.notificationService.showNotification(
-      //       this.toolConstService.getErrorMessages().userExist,
-      //       "danger"
-      //     );
-      //   }
-      // });
+      this.authService.signup(body).then((response) => {
+        if (response === "true") {
+          this.notificationService.showNotification(
+            this.toolConstService.getSuccessMessage().userCreated,
+            "success"
+          );
+        } else {
+          this.notificationService.showNotification(
+            this.toolConstService.getErrorMessages().userExist,
+            "danger"
+          );
+        }
+      });
     }
   }
 
