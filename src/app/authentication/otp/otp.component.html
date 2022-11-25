@@ -1,0 +1,51 @@
+<div class="wrapper wrapper-full-page">
+    <div class="page-header login-page" filter-color="white"
+      style="background-size: cover; background-position: top center">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-4 col-md-6 col-sm-6 ml-auto mr-auto">
+            <form class="form" method="" action="">
+              <img src="./assets/img/logo.png" style="
+                  width: 230px;
+                  margin: 0;
+                  position: relative;
+                  top: 50%;
+                  left: 50%;
+                  -ms-transform: translate(-50%, -50%);
+                  transform: translate(-50%, -50%);
+                " />
+              <div>
+                <label class="label">
+                  <h3 style="
+                      font-weight: 600;
+                      color: black;
+                      margin: 0;
+                      position: relative;
+                      top: 50%;
+                      left: 18%;
+                    ">
+                    Enter Security Token
+                  </h3>
+                </label>
+                <div class="card-body" style="padding-left: 30px; padding-top: 0px">
+                  <span class="bmd-form-group">
+                    <div class="input-group form-group">
+                      <input [(ngModel)]="loginData.otp" name="otp" #otp="ngModel" placeholder="Enter Security Token"
+                        type="text" value="" required />
+                    </div>
+                  </span>
+                </div>
+  
+                <div class="justify-content-center">
+                  <button style="border-radius: 10px" mat-raised-button class="btn btn-primary"
+                    (click)="getOtp(otp.value)">
+                    <h4 style="font-weight: 400; font-size: 20px">Submit</h4>
+                  </button>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>

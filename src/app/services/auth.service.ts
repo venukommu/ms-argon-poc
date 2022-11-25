@@ -1,5 +1,5 @@
 import { Injectable } from "@angular/core";
-import { HttpClient, HttpParams } from "@angular/common/http";
+import { HttpClient, HttpHeaders, HttpParams } from "@angular/common/http";
 import { commonHeaders } from "./common.headers";
 import { map, catchError } from "rxjs/operators";
 import { BehaviorSubject } from "rxjs";
@@ -104,5 +104,46 @@ export class AuthService {
     } else {
       this.currentUserRole.next(false);
     }
+  }
+
+  forgotPassword(username) {
+    return this.httpClient
+      .post(this.fullUrl + "/resetPassword", username, {
+        headers: new HttpHeaders({Accept: "application/json",}),
+      })
+      .pipe(
+        map((data) => {
+          return data;
+        })
+      )
+      .pipe(
+        catchError((err) => {
+          console.log(err, "ERERER>>>>>>>>>>>>>>>>>");
+          return err;
+        })
+      );
+  }
+
+  confirmPassword(otp: string) {
+    console.log("verification code---------------", otp);
+
+    // Add safe, URL encoded search parameter if there is a search term
+    const options = otp ? { params: new HttpParams().set("token", otp) } : {};
+    console.log("options",options);
+    return this.httpClient
+      .get(this.fullUrl + "/validatePasswordResetToken", options)
+      .pipe(
+        map((data) => {
+          var res = data;
+          console.log(res, "Responce");
+          return res;
+        })
+      )
+      .pipe(
+        catchError((err) => {
+          console.log(err, "ERERER>>>>>>>>>>>>>>>>>");
+          return err;
+        })
+      );
   }
 }

@@ -3,6 +3,7 @@ import { Forgot } from "src/app/services/interface";
 import { NgModule } from "@angular/core";
 import { Router } from "@angular/router";
 import { FormArray, FormBuilder, FormGroup, Validators } from "@angular/forms";
+import { AuthService } from "src/app/services/auth.service";
 
 @Component({
   selector: "app-forgot-password",
@@ -17,7 +18,8 @@ export class ForgotPasswordComponent implements OnInit {
     username: "",
   };
 
-  constructor(private router: Router, private fb: FormBuilder) {
+  constructor(private router: Router, private fb: FormBuilder,
+    private authService: AuthService) {
     this.emailForm = this.fb.group({
       email: [
         null,
@@ -41,6 +43,7 @@ export class ForgotPasswordComponent implements OnInit {
       // You will get form value if your form is valid
       var formValues = this.emailForm.getRawValue;
       console.log(this.emailForm);
+
     } else {
       //this.login.controls["terms"].setValue(false);
     }
@@ -60,10 +63,14 @@ export class ForgotPasswordComponent implements OnInit {
 
   passwordReset() {
     this.markFormTouched(this.emailForm);
+    console.log("email",this.emailForm.value.email);
 
-    if (this.eValid === true) {
-      this.router.navigateByUrl("/otp");
-    }
+    this.authService.forgotPassword(this.emailForm.value.email).subscribe((result) => {
+      console.log(result, ">>>>>>>");
+      if (result["status"] === true) {
+        this.router.navigateByUrl("/otp");
+      }
+    });
   }
 
   ValidateEmail(evt) {
