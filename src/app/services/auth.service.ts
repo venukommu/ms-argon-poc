@@ -1,6 +1,7 @@
 import { Injectable } from "@angular/core";
 import { HttpClient, HttpParams } from "@angular/common/http";
 import { commonHeaders } from "./common.headers";
+import { map, catchError } from "rxjs/operators";
 
 @Injectable({
   providedIn: "root",
@@ -9,15 +10,35 @@ export class AuthService {
   
   constructor(private httpClient: HttpClient) {}
   private fullUrl = "http://medicalservices-env.eba-dmfdzmmi.ap-south-1.elasticbeanstalk.com";
+  // signup(body) {
+  //   return this.httpClient.post(this.fullUrl + "/register?", body, {
+  //       headers: commonHeaders,
+  //     })
+  //     .toPromise()
+  //     .then((response: Response) => {
+  //       let res = response["_body"];
+  //       console.log("res",res);
+  //       return res;
+  //     });
+  // }
+
   signup(body) {
-    return this.httpClient.post(this.fullUrl + "/register?", body, {
+    console.log(body);
+    return this.httpClient
+      .post(this.fullUrl + `/register?`, body, {
         headers: commonHeaders,
       })
-      .toPromise()
-      .then((response: Response) => {
-        let res = response["_body"];
-        console.log("res",res);
-        return res;
-      });
+      .pipe(
+        map((res: any) => {
+          console.log(res);
+          return res;
+        })
+      )
+      .pipe(
+        catchError((err) => {
+          console.log(err);
+          return err;
+        })
+      );
   }
 }

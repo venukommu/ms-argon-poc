@@ -32,7 +32,7 @@ export class SignupComponent implements OnInit, OnDestroy {
       fullName: ["", [Validators.required, Validators.minLength(3)]],
       // To add a validator, we must first convert the string value into an array. The first item in the array is the default value if any, then the next item in the array is the validator. Here we are adding a required validator meaning that the firstName attribute must have a value in it.
       email: [
-        null,
+        "",
         [
           Validators.required,
           Validators.pattern("^[a-z0-9._%+-]+@[a-z0-9.-]+.[a-z]{2,4}$"),
@@ -99,7 +99,7 @@ export class SignupComponent implements OnInit, OnDestroy {
 
       const body = {
         fullName: this.register.value.fullName,
-        emailAddress: this.register.value.email,
+        username: this.register.value.email,
         mobileNumber : this.register.value.mobileNumber,
         password: this.register.value.password,
         role: this.role
@@ -107,7 +107,7 @@ export class SignupComponent implements OnInit, OnDestroy {
       console.log("body", body);
       this.router.navigateByUrl("/signin");
 
-      this.authService.signup(body).then((response) => {
+      this.authService.signup(body).subscribe((response) => {
         if (response === "true") {
           this.notificationService.showNotification(
             this.toolConstService.getSuccessMessage().userCreated,
