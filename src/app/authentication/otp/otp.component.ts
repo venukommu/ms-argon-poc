@@ -18,10 +18,13 @@ export class OtpComponent implements OnInit {
   public loginData: Otp = {
     otp: "",
   };
-  
+  inputData: any;
+
   constructor(private authService: AuthService, private router: Router,
     private notificationService: NotificationsService,
-    private toolConstService: ToolConstService) { }
+    private toolConstService: ToolConstService) { 
+      this.inputData = this.router.getCurrentNavigation().extras?.state;
+    }
 
   ngOnInit(): void {
   }
@@ -32,7 +35,7 @@ export class OtpComponent implements OnInit {
       console.log(result["entity"].entityId, ">>>>>>>");
       console.log(result, ">>>>>>>");
       if (result["status"] === true) {
-        this.router.navigateByUrl("/reset", { state: result });
+        this.router.navigateByUrl("/reset", { state: this.inputData });
       }
       //this.notificationService.showNotification(result["message"], "success");
       //this.loading = false;

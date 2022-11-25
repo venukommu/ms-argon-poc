@@ -68,7 +68,8 @@ export class ForgotPasswordComponent implements OnInit {
     this.authService.forgotPassword(this.emailForm.value.email).subscribe((result) => {
       console.log(result, ">>>>>>>");
       if (result["status"] === true) {
-        this.router.navigateByUrl("/otp");
+        
+        this.router.navigateByUrl("/otp", { state: this.emailForm.value.email });
       }
     });
   }

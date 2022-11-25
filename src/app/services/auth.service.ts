@@ -13,7 +13,7 @@ export class AuthService {
   public role: any;
   
   constructor(private httpClient: HttpClient) {}
-  //private fullUrl = "http://medicalservices-env.eba-dmfdzmmi.ap-south-1.elasticbeanstalk.com";
+  //private fullUrl = "http://msspoc.ap-south-1.elasticbeanstalk.com";
   private fullUrl = "http://localhost:8080";
   // signup(body) {
   //   return this.httpClient.post(this.fullUrl + "/register?", body, {
@@ -124,7 +124,7 @@ export class AuthService {
       );
   }
 
-  confirmPassword(otp: string) {
+  confirmPassword(otp) {
     console.log("verification code---------------", otp);
 
     // Add safe, URL encoded search parameter if there is a search term
@@ -136,6 +136,28 @@ export class AuthService {
         map((data) => {
           var res = data;
           console.log(res, "Responce");
+          return res;
+        })
+      )
+      .pipe(
+        catchError((err) => {
+          console.log(err, "ERERER>>>>>>>>>>>>>>>>>");
+          return err;
+        })
+      );
+  }
+
+  resetPassword(body){
+    console.log(body, "entity>>>>>>>>>>>>>>>>>");
+
+    return this.httpClient
+      .post(this.fullUrl + "/changePassword", body, {
+        headers: new HttpHeaders({Accept: "application/json",}),
+      })
+      .pipe(
+        map((data) => {
+          var res = data;
+          console.log(res, "ERERER>>>>>>>>>>>>>>>>>");
           return res;
         })
       )
