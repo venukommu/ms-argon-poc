@@ -1,51 +1,104 @@
-<div class="wrapper wrapper-full-page">
-    <div class="page-header login-page" filter-color="white"
-      style="background-size: cover; background-position: top center">
-      <div class="container">
-        <div class="row">
-          <div class="col-lg-4 col-md-6 col-sm-6 ml-auto mr-auto">
-            <form class="form" method="" action="">
-              <img src="./assets/img/logo.png" style="
-                  width: 230px;
-                  margin: 0;
-                  position: relative;
-                  top: 50%;
-                  left: 50%;
-                  -ms-transform: translate(-50%, -50%);
-                  transform: translate(-50%, -50%);
-                " />
-              <div>
-                <label class="label">
-                  <h3 style="
-                      font-weight: 600;
-                      color: black;
-                      margin: 0;
-                      position: relative;
-                      top: 50%;
-                      left: 18%;
-                    ">
-                    Enter Security Token
-                  </h3>
-                </label>
-                <div class="card-body" style="padding-left: 30px; padding-top: 0px">
-                  <span class="bmd-form-group">
-                    <div class="input-group form-group">
-                      <input [(ngModel)]="loginData.otp" name="otp" #otp="ngModel" placeholder="Enter Security Token"
-                        type="text" value="" required />
-                    </div>
-                  </span>
-                </div>
-  
-                <div class="justify-content-center">
-                  <button style="border-radius: 10px" mat-raised-button class="btn btn-primary"
-                    (click)="getOtp(otp.value)">
-                    <h4 style="font-weight: 400; font-size: 20px">Submit</h4>
-                  </button>
-                </div>
+<div
+  class="wrapper wrapper-full-page"
+  style="
+    background-size: cover;
+    background-position: top center;
+    background-color: white;
+  "
+>
+  <div
+    class="login-page"
+    filter-color="white"
+    style="background-size: cover; background-position: top center"
+  >
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-4 col-md-6 col-sm-6 ml-auto mr-auto">
+          <form [formGroup]="tokenForm">
+            <div class="card">
+              <div class="card-header card-header-info text-center">
+                <h4 class="card-title">Security Token</h4>
               </div>
-            </form>
-          </div>
+              <br />
+              <div class="text" style="color: black">
+                <p style="margin-right: 5%">
+                  Please enter the Security Token received to your Email
+                </p>
+              </div>
+              <div
+                class="card-body"
+                style="padding-left: 30px; padding-top: 0px"
+              >
+                <span>
+                  <div class="input-group form-group">
+                    <!-- <h4
+                      style="
+                        font-weight: 700;
+                        color: black;
+                        margin: 0;
+                        position: relative;
+                        top: 0%;
+                        left: 10px;
+                      "
+                    >
+                      Email/Mobile Number
+                    </h4> -->
+                    <div class="input-group-prepend">
+                      <span class="input-group-text">
+                        <i class="material-icons">privacy_tip</i>
+                      </span>
+                    </div>
+                    <input
+                      class="form-control"
+                      placeholder="Enter Security Token"
+                      formControlName="otp"
+                      type="text"
+                      value=""
+                      required
+                    />
+                    <span
+                      style="color: red; padding-left: 55px"
+                      class="text-danger input-group"
+                      *ngIf="
+                      tokenForm.controls['otp'].hasError('required') &&
+                        (tokenForm.controls['otp'].dirty ||
+                        tokenForm.controls['otp'].touched)
+                      "
+                      >This field is required</span
+                    >
+                    <!-- <span
+                      style="color: red; padding-left: 55px"
+                      class="text-danger input-group"
+                      *ngIf="
+                        emailForm.controls['email'].hasError('pattern') &&
+                        (emailForm.controls['email'].dirty ||
+                          emailForm.controls['email'].touched)
+                      "
+                      >Please enter valid email address or phone number</span
+                    > -->
+                  </div>
+                </span>
+              </div>
+
+              <!-- <div class="justify-content-center" style="margin-bottom: 5%">
+                <button class="btn btn-info btn-lg" (click)="passwordReset()">
+                  Submit
+                </button>
+              </div> -->
+              <div class="justify-content-center text-center">
+                <button
+                (click)="getOtp(otp.value)" 
+                 class="button"
+                  type="submit"
+                  style="margin-bottom: 20px"
+                >
+                  Submit
+                </button>
+              </div>
+            </div>
+          </form>
         </div>
       </div>
     </div>
   </div>
+</div>
