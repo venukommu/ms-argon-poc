@@ -2,7 +2,10 @@ import { Injectable } from "@angular/core";
 import { HttpClient, HttpHeaders, HttpParams } from "@angular/common/http";
 import { commonHeaders } from "./common.headers";
 import { map, catchError } from "rxjs/operators";
-import { BehaviorSubject } from "rxjs";
+import { BehaviorSubject, throwError } from "rxjs";
+import { NotificationsService } from "./notifications.service";
+import { ToolConstService } from "./tool-const.service";
+import { Router } from "@angular/router";
 
 @Injectable({
   providedIn: "root",
@@ -11,21 +14,14 @@ export class AuthService {
   private currentUserRole: BehaviorSubject<any> = new BehaviorSubject(null);
   public token: string;
   public role: any;
+  public error: any;
   
-  constructor(private httpClient: HttpClient) {}
+  constructor(private httpClient: HttpClient,
+    private notificationService: NotificationsService,
+    private toolConstService: ToolConstService,
+    private router: Router) {}
   //private fullUrl = "http://msspoc.ap-south-1.elasticbeanstalk.com";
   private fullUrl = "http://localhost:8080";
-  // signup(body) {
-  //   return this.httpClient.post(this.fullUrl + "/register?", body, {
-  //       headers: commonHeaders,
-  //     })
-  //     .toPromise()
-  //     .then((response: Response) => {
-  //       let res = response["_body"];
-  //       console.log("res",res);
-  //       return res;
-  //     });
-  // }
 
   signup(body) {
     console.log(body);
@@ -42,6 +38,7 @@ export class AuthService {
       .pipe(
         catchError((err) => {
           console.log(err);
+          this.handleError(this.toolConstService.getErrorMessages().userExist);
           return err;
         })
       );
@@ -58,45 +55,51 @@ export class AuthService {
         map((response: Response) => {
           console.log("response", response);
           // login successful if there's a jwt token in the response
-          //let token = response.json() && response.json().token;
+          let token = response["jwtToken"];
          // console.log("in service call token", token)
-          let token = ''
           if (token) {
-            let jwtData = token.split(".")[1];
-            let decodedJwtJsonData = window.atob(jwtData);
-            let decodedJwtData = JSON.parse(decodedJwtJsonData);
+            //let jwtData = token.split(".")[1];
+            //let decodedJwtJsonData = window.atob(jwtData);
+            //let decodedJwtData = JSON.parse(decodedJwtJsonData);
 
-            const roles = decodedJwtData.roles;
-            console.log("roles", roles)
-            if (roles.includes("ROLE_DOCTOR")) {
-              this.role = "Doctor";
-            } else if (roles.includes("ROLE_PATIENT")) {
-              this.role = "Patient";
-            }
-            // set token property
-            this.token = token;
-
-            //const roles = decodedJwtData.roles
-
+            this.role = response["userDetails"].authorities[0].authority;
+            console.log("roles", this.role)
+            // if (roles.includes("ROLE_DOCTOR")) {
+            //   this.role = "Doctor";
+            // } else if (roles.includes("ROLE_PATIENT")) {
+            //   this.role = "Patient";
+            // }
             // set token property
             this.token = token;
 
             // store username and jwt token in local storage to keep user logged in between page refreshes
-            // localStorage.setItem(
-            //   "currentUser",
-            //   JSON.stringify({
-            //     username: username,
-            //     token: token,
-            //     role: this.role,
-            //   })
-            // );
-          } else {
-            return false;
-          }
+            localStorage.setItem(
+              "currentUser",
+              JSON.stringify({
+                username: response["userDetails"].username,
+                token: token,
+                role: this.role,
+              })
+            );
+            return response;
+          } 
         })
       )
-      //.pipe(catchError((err) => this.handleError()));
+      .pipe(
+        catchError((err) => {
+          console.log(err);
+          this.handleError(this.toolConstService.getErrorMessages().userNotExist);
+          return err;
+        })
+      );
   }
+
+  handleError = (message) => {
+    this.notificationService.showNotification(
+      message,
+      "danger"
+    );
+  };
 
   getCurrentUser(role) {
     if (role) {
@@ -124,14 +127,15 @@ export class AuthService {
       );
   }
 
-  confirmPassword(otp) {
+  confirmPassword(otp: String) {
+    //token = JSON.stringify({"passwordRecoveryToken": otp})
     console.log("verification code---------------", otp);
 
     // Add safe, URL encoded search parameter if there is a search term
-    const options = otp ? { params: new HttpParams().set("token", otp) } : {};
-    console.log("options",options);
+    //const options = otp ? { params: new HttpParams().set("token", otp) } : {};
+    //console.log("options",options);
     return this.httpClient
-      .get(this.fullUrl + "/validatePasswordResetToken", options)
+      .post(this.fullUrl + "/validatePasswordResetToken", otp)
       .pipe(
         map((data) => {
           var res = data;

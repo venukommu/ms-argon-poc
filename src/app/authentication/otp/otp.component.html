@@ -14,7 +14,7 @@
     <div class="container">
       <div class="row">
         <div class="col-lg-4 col-md-6 col-sm-6 ml-auto mr-auto">
-          <form [formGroup]="tokenForm">
+          <form class="form" method="" action="">
             <div class="card">
               <div class="card-header card-header-info text-center">
                 <h4 class="card-title">Security Token</h4>
@@ -50,13 +50,15 @@
                     </div>
                     <input
                       class="form-control"
+                      [(ngModel)]="loginData.otp" 
+                      name="otp" 
+                      #otp="ngModel"
                       placeholder="Enter Security Token"
-                      formControlName="otp"
                       type="text"
                       value=""
                       required
                     />
-                    <span
+                    <!-- <span
                       style="color: red; padding-left: 55px"
                       class="text-danger input-group"
                       *ngIf="
@@ -65,7 +67,7 @@
                         tokenForm.controls['otp'].touched)
                       "
                       >This field is required</span
-                    >
+                    > -->
                     <!-- <span
                       style="color: red; padding-left: 55px"
                       class="text-danger input-group"

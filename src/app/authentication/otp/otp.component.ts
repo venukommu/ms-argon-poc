@@ -29,6 +29,7 @@ export class OtpComponent implements OnInit {
     private notificationService: NotificationsService,
     private toolConstService: ToolConstService) { 
       this.inputData = this.router.getCurrentNavigation().extras?.state;
+
     }
 
   ngOnInit(): void {
@@ -37,9 +38,9 @@ export class OtpComponent implements OnInit {
   getOtp(otp) {
     console.log(otp);
     this.authService.confirmPassword(otp).subscribe((result) => {
-      console.log(result["entity"].entityId, ">>>>>>>");
+      //console.log(result["entity"].entityId, ">>>>>>>");
       console.log(result, ">>>>>>>");
-      if (result["status"] === true) {
+      if (result["status"] === "validToken") {
         this.router.navigateByUrl("/reset", { state: this.inputData });
       }
       //this.notificationService.showNotification(result["message"], "success");

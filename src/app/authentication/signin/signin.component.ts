@@ -118,9 +118,15 @@ export class SigninComponent implements OnInit {
         password: password,
       };
       this.authService.login(body).subscribe((result) => {
+        console.log("result",result);
         var currentUser = JSON.parse(
           JSON.stringify(localStorage.getItem("currentUser"))
         );
+        if (this.routeName === undefined) {
+          this.router.navigateByUrl(`/landing`);
+        } else {
+          this.router.navigateByUrl(`/${this.routeName}`);
+        }
         var role = JSON.parse(currentUser)["role"];
         this.authService.getCurrentUser(role);
       });
