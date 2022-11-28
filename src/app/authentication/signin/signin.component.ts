@@ -108,24 +108,23 @@ export class SigninComponent implements OnInit {
     console.log("hello");
     if (!this.login.valid) {
       return false;
-    }else{
+    } else {
       var username = this.login.value.email;
       var password = this.login.value.password;
-      console.log("username",username )
-      console.log("pwd", password)
+      console.log("username", username);
+      console.log("pwd", password);
       const body = {
         username: username,
         password: password,
       };
-      this.authService.login(body)
-        .subscribe((result) => {
-          var currentUser = JSON.parse(
-            JSON.stringify(localStorage.getItem("currentUser"))
-          );
-          var role = JSON.parse(currentUser)["role"];
-          this.authService.getCurrentUser(role);
-        });
-    } 
+      this.authService.login(body).subscribe((result) => {
+        var currentUser = JSON.parse(
+          JSON.stringify(localStorage.getItem("currentUser"))
+        );
+        var role = JSON.parse(currentUser)["role"];
+        this.authService.getCurrentUser(role);
+      });
+    }
   }
 
   markFormTouched(group: FormGroup | FormArray) {

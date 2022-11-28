@@ -1,5 +1,8 @@
 import { Injectable } from "@angular/core";
-declare const $: any;
+import * as jQuery from "jquery";
+import "bootstrap-notify";
+
+const $: any = jQuery;
 
 @Injectable({
   providedIn: "root",
