@@ -25,7 +25,8 @@ export class ProviderRegistrationComponent implements OnInit {
     private authenticationService: AuthService,
     private notificationService: NotificationsService,
     private toolConstService: ToolConstService,
-    private router: Router
+    private router: Router,
+    private authService: AuthService,
   ) {
     this.register = this.formBuilder.group({
       fullName: ["", [Validators.required, Validators.minLength(3)]],
@@ -88,37 +89,38 @@ export class ProviderRegistrationComponent implements OnInit {
     body.classList.remove("register-page");
     body.classList.remove("off-canvas-sidebar");
   }
-  goSignup() {
-    if (this.register.valid) {
-      console.log("email", this.register.value.email);
-      console.log("fullName", this.register.value.fullName);
-      console.log("password", this.register.value.password);
-      console.log("mobileNumber", this.register.value.mobileNumber);
-      console.log("Role", this.role);
-
-      const body = {
-        userName: this.register.value.fullName,
-        emailId: this.register.value.email,
-        password: this.register.value.password,
-        role: this.role,
-      };
-      console.log("body", body);
-      this.router.navigateByUrl("/doctor-activities");
-      // this.authenticationService.signup(body).then((response) => {
-      //   if (response === "true") {
-      //     this.notificationService.showNotification(
-      //       this.toolConstService.getSuccessMessage().userCreated,
-      //       "success"
-      //     );
-      //   } else {
-      //     this.notificationService.showNotification(
-      //       this.toolConstService.getErrorMessages().userExist,
-      //       "danger"
-      //     );
-      //   }
-      // });
+  goProviderRegister() {
+      if (this.register.valid) {
+        console.log("email", this.register.value.email);
+        console.log("fullName", this.register.value.fullName);
+        console.log("password", this.register.value.password);
+        console.log("mobileNumber", this.register.value.mobileNumber);
+  
+        const body = {
+          fullName: this.register.value.fullName,
+          username: this.register.value.email,
+          mobileNumber : this.register.value.mobileNumber,
+          password: this.register.value.password,
+          role: 'Doctor'
+        };
+        console.log("body", body);
+        this.router.navigateByUrl("/signin");
+  
+        this.authService.signup(body).subscribe((response) => {
+          if (response === "true") {
+            this.notificationService.showNotification(
+              this.toolConstService.getSuccessMessage().userCreated,
+              "success"
+            );
+          } else {
+            this.notificationService.showNotification(
+              this.toolConstService.getErrorMessages().userExist,
+              "danger"
+            );
+          }
+        });
+      }
     }
-  }
 
   animateButton(e) {
     e.preventDefault;
