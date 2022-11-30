@@ -20,8 +20,8 @@ export class AuthService {
     private notificationService: NotificationsService,
     private toolConstService: ToolConstService,
     private router: Router) {}
-  //private fullUrl = "http://msspoc.ap-south-1.elasticbeanstalk.com";
-  private fullUrl = "http://localhost:8080";
+  private fullUrl = "http://msspoc.ap-south-1.elasticbeanstalk.com";
+  //private fullUrl = "http://localhost:8080";
 
   signup(body) {
     console.log(body);
@@ -81,8 +81,8 @@ export class AuthService {
                 role: this.role,
               })
             );
-            return response;
-          } 
+          }
+          return response; 
         })
       )
       .pipe(
