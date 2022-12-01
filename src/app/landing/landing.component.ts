@@ -1,5 +1,6 @@
 import { Component, OnInit, ViewChild, ElementRef } from "@angular/core";
 import { NavigationExtras, Router } from "@angular/router";
+import { CommonService } from "../services/common.service";
 
 @Component({
   selector: "app-landing",
@@ -103,7 +104,12 @@ export class LandingComponent implements OnInit {
   focus: any;
   focus1: any;
 
-  constructor(private router: Router) {}
+  constructor(private router: Router, private commonService: CommonService) {
+
+    this.commonService.getSpecialties().subscribe((response) => {
+      console.log("response",response);
+    });
+  }
 
   scrollLeft() {
     this.widgetsContent.nativeElement.scrollLeft -= 230;
@@ -217,4 +223,6 @@ export class LandingComponent implements OnInit {
       }, 500);
     }
   }
+
+
 }

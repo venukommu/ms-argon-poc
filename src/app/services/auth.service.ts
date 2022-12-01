@@ -20,8 +20,8 @@ export class AuthService {
     private notificationService: NotificationsService,
     private toolConstService: ToolConstService,
     private router: Router) {}
-  private fullUrl = "http://msspoc.ap-south-1.elasticbeanstalk.com";
-  //private fullUrl = "http://localhost:8080";
+    private fullUrl = "http://msspoc.ap-south-1.elasticbeanstalk.com";
+    //private fullUrl = "http://localhost:8080";
 
   signup(body) {
     console.log(body);
@@ -62,7 +62,7 @@ export class AuthService {
             //let decodedJwtJsonData = window.atob(jwtData);
             //let decodedJwtData = JSON.parse(decodedJwtJsonData);
 
-            this.role = response["userDetails"].authorities[0].authority;
+            this.role = response["userDetails"].userRoles[0].authority;
             console.log("roles", this.role)
             // if (roles.includes("ROLE_DOCTOR")) {
             //   this.role = "Doctor";
