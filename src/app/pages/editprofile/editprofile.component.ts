@@ -13,13 +13,16 @@ export class EditprofileComponent implements OnInit {
 
   constructor(private formBuilder: FormBuilder) { 
     this.editForm = this.formBuilder.group({
-      firstName: ['', [Validators.required, Validators.minLength(3)]],
-      lastName: ['', [Validators.required, Validators.minLength(3)]],
-      city: ['', [Validators.required, Validators.minLength(3)]],
-      state: ['', [Validators.required, Validators.minLength(3)]],
-      phone: ['', [Validators.required, Validators.minLength(3)]],
-      age: ['', [Validators.required, Validators.minLength(3)]],
-      gender: ['', [Validators.required, Validators.minLength(3)]],
+      firstName: ['', [Validators.required]],
+      lastName: ['', [Validators.required]],
+      city: ['', [Validators.required]],
+      state: ['', [Validators.required]],
+      phone: ['', [Validators.required, Validators.maxLength(10)]],
+      age: ['', [Validators.required]],
+      gender: ['', [Validators.required]],
+      professinalStatement: ['', [Validators.required]],
+      practicingFrom: ['', [Validators.required]],
+      
       // country: ['', [Validators.required, Validators.minLength(3)]],
       // userName: ['', [Validators.required, Validators.minLength(3)]],
       // // To add a validator, we must first convert the string value into an array. The first item in the array is the default value if any, then the next item in the array is the validator. Here we are adding a required validator meaning that the firstName attribute must have a value in it.
