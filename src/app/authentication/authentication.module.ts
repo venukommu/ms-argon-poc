@@ -9,6 +9,7 @@ import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { SignupComponent } from "./signup/signup.component";
 import { MatCheckboxModule } from "@angular/material/checkbox";
 import { SymptomsComponent } from './symptoms/symptoms.component';
+import { OtpComponent } from './otp/otp.component';
 
 @NgModule({
   declarations: [
@@ -17,6 +18,7 @@ import { SymptomsComponent } from './symptoms/symptoms.component';
     ResetPasswordComponent,
     ForgotPasswordComponent,
     SymptomsComponent,
+    OtpComponent,
   ],
   imports: [
     CommonModule,

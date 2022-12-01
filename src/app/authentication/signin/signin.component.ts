@@ -27,7 +27,7 @@ export class SigninComponent implements OnInit {
   constructor(
     private fb: FormBuilder,
     private router: Router,
-    private authenticationService: AuthService,
+    private authService: AuthService,
     private notificationService: NotificationsService,
     private toolConstService: ToolConstService
   ) {
@@ -67,41 +67,77 @@ export class SigninComponent implements OnInit {
     }
   }
 
+  // submitForm() {
+  //   console.log("hello");
+  //   // for (let v in this.login_form.controls) {
+  //   //   this.login_form.controls[v].markAsTouched();
+  //   // }
+  //   console.log(this.login, this.zipcode, this.loginData);
+  //   localStorage.setItem(
+  //     "currentUser",
+  //     JSON.stringify({
+  //       username: this.login.value.email,
+  //       password: this.login.value.password,
+  //       role: "patient",
+  //       zipcode: this.zipcode,
+  //     })
+  //   );
+
+  //   // this.Nav.loginNav(this.login, this.zipcode);
+
+  //   if (this.routeName === undefined) {
+  //     this.router.navigateByUrl(`/landing`);
+  //   } else {
+  //     this.router.navigateByUrl(`/${this.routeName}`);
+  //   }
+
+  //   this.markFormTouched(this.login);
+  //   if (this.login.valid) {
+  //     var username = this.login.value.email;
+  //     var password = this.login.value.password;
+  //     let zipcode = this.login.value.zipcode;
+  //     // You will get form value if your form is valid
+  //     var formValues = this.login.getRawValue;
+  //     console.log(this.login);
+  //     console.log(zipcode);
+  //   } else {
+  //     //this.login.controls["terms"].setValue(false);
+  //   }
+  // }
   submitForm() {
     console.log("hello");
-    // for (let v in this.login_form.controls) {
-    //   this.login_form.controls[v].markAsTouched();
-    // }
-    console.log(this.login, this.zipcode, this.loginData);
-    localStorage.setItem(
-      "currentUser",
-      JSON.stringify({
-        username: this.login.value.email,
-        password: this.login.value.password,
-        role: "patient",
-        zipcode: this.zipcode,
-      })
-    );
-
-    // this.Nav.loginNav(this.login, this.zipcode);
-
-    if (this.routeName === undefined) {
-      this.router.navigateByUrl(`/landing`);
+    if (!this.login.valid) {
+      return false;
     } else {
-      this.router.navigateByUrl(`/${this.routeName}`);
-    }
-
-    this.markFormTouched(this.login);
-    if (this.login.valid) {
       var username = this.login.value.email;
       var password = this.login.value.password;
-      let zipcode = this.login.value.zipcode;
-      // You will get form value if your form is valid
-      var formValues = this.login.getRawValue;
-      console.log(this.login);
-      console.log(zipcode);
-    } else {
-      //this.login.controls["terms"].setValue(false);
+      console.log("username", username);
+      console.log("pwd", password);
+      const body = {
+        username: username,
+        password: password,
+      };
+      this.authService.login(body).subscribe((result) => {
+        console.log("result",result);
+        if (result['status'] === "Email does not exist") {
+          console.log("result['status']",result['status']);
+          this.notificationService.showNotification(
+            result['status'],
+            "danger"
+          );
+        } else {
+          var currentUser = JSON.parse(
+            JSON.stringify(localStorage.getItem("currentUser"))
+          );
+          if (this.routeName === undefined) {
+            this.router.navigateByUrl(`/landing`);
+          } else {
+            this.router.navigateByUrl(`/${this.routeName}`);
+          }
+          var role = JSON.parse(currentUser)["role"];
+          this.authService.getCurrentUser(role);
+        }
+      });
     }
   }
 

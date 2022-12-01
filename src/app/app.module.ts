@@ -31,6 +31,8 @@ import { MigrainetreatmentdocsComponent } from "./migrainetreatmentdocs/migraine
 import { DiabetestreatmentdocsComponent } from "./diabetestreatmentdocs/diabetestreatmentdocs.component";
 import { DoctoractivitiesComponent } from "./doctoractivities/doctoractivities.component";
 import { ProviderRegistrationComponent } from "./provider-registration/provider-registration.component";
+import { AuthService } from "./services/auth.service";
+import { HttpClientModule } from "@angular/common/http";
 
 @NgModule({
   declarations: [
@@ -62,8 +64,9 @@ import { ProviderRegistrationComponent } from "./provider-registration/provider-
     AuthenticationModule,
     FormsModule,
     ReactiveFormsModule,
+    HttpClientModule
   ],
-  providers: [NotificationsService, ToolConstService, MatNativeDateModule],
+  providers: [AuthService, NotificationsService, ToolConstService, MatNativeDateModule ],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
