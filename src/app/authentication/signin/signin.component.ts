@@ -4,6 +4,7 @@ import { Router } from "@angular/router";
 import { AuthService } from "src/app/services/auth.service";
 import { NotificationsService } from "src/app/services/notifications.service";
 import { ToolConstService } from "src/app/services/tool-const.service";
+import { NavbarComponent } from "src/app/shared/navbar/navbar.component";
 import { PasswordStrengthValidator } from "../signup/password-strength.validators";
 
 @Component({
@@ -29,7 +30,8 @@ export class SigninComponent implements OnInit {
     private router: Router,
     private authService: AuthService,
     private notificationService: NotificationsService,
-    private toolConstService: ToolConstService
+    private toolConstService: ToolConstService,
+    private nav: NavbarComponent
   ) {
     const patientParams = this.router.getCurrentNavigation().extras.queryParams;
     console.log(patientParams?.routeName);
@@ -118,7 +120,8 @@ export class SigninComponent implements OnInit {
         password: password,
       };
       this.authService.login(body).subscribe((result) => {
-        console.log("result",result);
+        console.log("result", result);
+        this.nav.checkUsername();
         var currentUser = JSON.parse(
           JSON.stringify(localStorage.getItem("currentUser"))
         );

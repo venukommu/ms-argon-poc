@@ -12,8 +12,13 @@ export class NavbarComponent implements OnInit {
   private lastPoppedUrl: string;
   private yScrollStack: number[] = [];
   public userName: string = "";
+  private timer: any;
 
-  constructor(public location: Location, private router: Router) {}
+  constructor(public location: Location, private router: Router) {
+    setTimeout(() => {
+      clearInterval(this.timer);
+    }, 60000);
+  }
 
   ngOnInit() {
     this.router.events.subscribe((event) => {
@@ -32,11 +37,7 @@ export class NavbarComponent implements OnInit {
       this.lastPoppedUrl = ev.url;
     });
 
-    let timer = setInterval(() => {
-      const currentUser = JSON.parse(localStorage.getItem("currentUser"));
-      this.userName = currentUser?.username.split("@")[0];
-      if (this.userName) clearInterval(timer);
-    }, 1000);
+    this.checkUsername();
   }
 
   isHome() {
@@ -55,6 +56,14 @@ export class NavbarComponent implements OnInit {
     } else {
       return false;
     }
+  }
+
+  checkUsername() {
+    this.timer = setInterval(() => {
+      const currentUser = JSON.parse(localStorage.getItem("currentUser"));
+      this.userName = currentUser?.username.split("@")[0];
+      if (this.userName) clearInterval(this.timer);
+    }, 1000);
   }
 
   signout() {
