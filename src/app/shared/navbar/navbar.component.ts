@@ -1,19 +1,28 @@
-import { Component, OnInit } from "@angular/core";
+import { Component, OnDestroy, OnInit } from "@angular/core";
 import { Router, NavigationEnd, NavigationStart } from "@angular/router";
 import { Location, PopStateEvent } from "@angular/common";
+import { AuthService } from "src/app/services/auth.service";
 
 @Component({
   selector: "app-navbar",
   templateUrl: "./navbar.component.html",
   styleUrls: ["./navbar.component.scss"],
 })
-export class NavbarComponent implements OnInit {
+export class NavbarComponent implements OnInit, OnDestroy {
   public isCollapsed = true;
   private lastPoppedUrl: string;
   private yScrollStack: number[] = [];
   public userName: string = "";
+  public token: any;
+  private timer:any;
 
-  constructor(public location: Location, private router: Router) {}
+  constructor(public location: Location, private router: Router,
+              public authService: AuthService) {
+    this.token = this.authService.getToken();
+  }
+  ngOnDestroy(): void {
+    clearInterval(this.timer);
+  }
 
   ngOnInit() {
     this.router.events.subscribe((event) => {
@@ -32,10 +41,10 @@ export class NavbarComponent implements OnInit {
       this.lastPoppedUrl = ev.url;
     });
 
-    let timer = setInterval(() => {
+    this.timer = setInterval(() => {
       const currentUser = JSON.parse(localStorage.getItem("currentUser"));
-      this.userName = currentUser?.username.split("@")[0];
-      if (this.userName) clearInterval(timer);
+      this.userName = currentUser?.username.split('@')[0];
+      if (this.userName) clearInterval(this.timer);
     }, 1000);
   }
 
@@ -58,8 +67,10 @@ export class NavbarComponent implements OnInit {
   }
 
   signout() {
+    this.token = null;
     localStorage.removeItem("currentUser");
     this.userName = undefined;
     this.router.navigateByUrl("/signin");
   }
+
 }
