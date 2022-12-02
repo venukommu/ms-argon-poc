@@ -87,6 +87,9 @@ export class LandingComponent implements OnInit {
     this.commonService.getSymptoms().subscribe((response) => {
       this.symptoms = response['symptoms'];
     });
+    this.commonService.getDiagnosis().subscribe((response) => {
+      this.symptoms = response['diagnosis'];
+    });
     
   }
 

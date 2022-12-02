@@ -58,4 +58,22 @@ export class CommonService {
         })
       );
   }
+
+  getDiagnosis() {
+    return this.httpClient
+      .get(this.fullUrl + "/prov/diagnosis", {
+        headers: commonHeaders,
+      })
+      .pipe(
+        map((data) => {
+          return data;
+        })
+      )
+      .pipe(
+        catchError((err) => {
+          console.log(err, "ERERER>>>>>>>>>>>>>>>>>");
+          return err;
+        })
+      );
+  }
 }

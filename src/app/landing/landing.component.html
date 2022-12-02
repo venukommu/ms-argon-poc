@@ -180,7 +180,7 @@
         <div class="col-lg-12 slider-container">
           <div class="slides-container">
             <div #widgetsDiagnosis class="slides">
-              <div *ngFor="let daigno of diagnosisImgs">
+              <div *ngFor="let daigno of diagnosis">
                 <div
                   class="col-md-6 col-lg-3 mb-5 mb-lg-0 text-center"
                   style="display: flex"
@@ -188,14 +188,14 @@
                   <div class="px-2">
                     <a (click)="splRoute(daigno.url)">
                       <img
-                        src="{{ daigno.img }}"
-                        alt="{{ daigno.title }}"
+                        src="{{ daigno.dignosisImgUrl }}"
+                        alt="{{ daigno.diagnosisName }}"
                         class="img-center img-responsive"
                         style="width: 170px"
                     /></a>
                     <div class="pt-4 text-center">
                       <h5 class="title">
-                        <span class="d-block mb-1">{{ daigno.title }}</span>
+                        <span class="d-block mb-1">{{ daigno.diagnosisName }}</span>
                       </h5>
                     </div>
                   </div>
