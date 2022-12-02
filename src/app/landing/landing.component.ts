@@ -13,48 +13,38 @@ export class LandingComponent implements OnInit {
   @ViewChild("widgetsDiagnosis") widgetsDiagnosis: ElementRef;
 
   public userName: string = "";
+  public specializations: any;
+  public diagnosis: any;
 
   specialitiesImgs = [
     {
-      img: "./assets/img/hospital/physician.svg",
       title: "Physician",
       url: "/physicians",
     },
     {
-      img: "./assets/img/hospital/gynaecologist.svg",
       title: "Gynaecologist",
       url: "/gynaecologist",
     },
     {
-      img: "./assets/img/hospital/pediatrician.svg",
       title: "Pediatrician",
       url: "/pediatrician",
     },
     {
-      img: "./assets/img/hospital/orthopedician.svg",
       title: "Orthopedician",
       url: "/ortho",
     },
     {
-      img: "./assets/img/hospital/eye-specialist.svg",
-      title: "Eye Specialist",
+      title: "Eye-specialist",
       url: "/eyespecialist",
     },
     {
-      img: "./assets/img/hospital/physiotherapist.svg",
       title: "Physiotherapist",
       url: "#",
     },
     {
-      img: "./assets/img/hospital/dentist.svg",
       title: "Dentist",
       url: "/dentist",
-    },
-    {
-      img: "./assets/img/hospital/more.svg",
-      title: "View all",
-      url: "/doctors",
-    },
+    }
   ];
 
   diagnosisImgs = [
@@ -108,7 +98,9 @@ export class LandingComponent implements OnInit {
 
     this.commonService.getSpecialties().subscribe((response) => {
       console.log("response",response);
+      this.specializations = response['specializations'];
     });
+    
   }
 
   scrollLeft() {
@@ -207,7 +199,13 @@ export class LandingComponent implements OnInit {
 
   bubblyButtons = document.getElementsByClassName("button");
 
-  splRoute(url){
+  splRoute(name){
+    var url;
+    for( let spl of this.specialitiesImgs){
+      if (spl.title === name){
+        url = spl.url;
+      }
+    }
     console.log("url",url);
     const naviagtionExtras: NavigationExtras = {
       queryParams: {

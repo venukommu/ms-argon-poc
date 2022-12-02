@@ -1,8 +1,7 @@
 import { Injectable } from "@angular/core";
-import { HttpClient, HttpHeaders, HttpParams } from "@angular/common/http";
+import { HttpClient } from "@angular/common/http";
 import { commonHeaders } from "./common.headers";
 import { map, catchError } from "rxjs/operators";
-import { BehaviorSubject, throwError } from "rxjs";
 import { NotificationsService } from "./notifications.service";
 import { ToolConstService } from "./tool-const.service";
 import { Router } from "@angular/router";
@@ -15,10 +14,7 @@ export class CommonService {
   public role: any;
   public error: any;
   
-  constructor(private httpClient: HttpClient,
-    private notificationService: NotificationsService,
-    private toolConstService: ToolConstService,
-    private router: Router) {}
+  constructor(private httpClient: HttpClient) {}
     private fullUrl = "http://msspoc.ap-south-1.elasticbeanstalk.com";
     //private fullUrl = "http://localhost:8080";
 
@@ -29,17 +25,10 @@ export class CommonService {
   }
 
   getSpecialties() {
-    var token = this.getToken();
-    console.log("token", token);
-    const httpOptions = { 
-        headers: new HttpHeaders(
-        {
-            'Content-Type':  'application/json',
-            'JWT-AUTH-TOKEN': token
-        })
-    };
     return this.httpClient
-      .get(this.fullUrl + "/specializations", httpOptions)
+      .get(this.fullUrl + "/prov/specializations", {
+        headers: commonHeaders,
+      })
       .pipe(
         map((data) => {
           return data;
