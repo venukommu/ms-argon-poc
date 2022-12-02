@@ -120,23 +120,11 @@ export class SigninComponent implements OnInit {
         password: password,
       };
       this.authService.login(body).subscribe((result) => {
-<<<<<<< HEAD
-        console.log("result", result);
         this.nav.checkUsername();
-        var currentUser = JSON.parse(
-          JSON.stringify(localStorage.getItem("currentUser"))
-        );
-        if (this.routeName === undefined) {
-          this.router.navigateByUrl(`/landing`);
-=======
-        console.log("result",result);
-        if (result['status'] === "Email does not exist") {
-          console.log("result['status']",result['status']);
-          this.notificationService.showNotification(
-            result['status'],
-            "danger"
-          );
->>>>>>> 5da78dbc4373a2d7606e8baa8e6fd71d39f2ef6e
+        console.log("result", result);
+        if (result["status"] === "Email does not exist") {
+          console.log("result['status']", result["status"]);
+          this.notificationService.showNotification(result["status"], "danger");
         } else {
           var currentUser = JSON.parse(
             JSON.stringify(localStorage.getItem("currentUser"))
