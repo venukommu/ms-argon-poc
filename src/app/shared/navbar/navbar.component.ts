@@ -15,12 +15,15 @@ export class NavbarComponent implements OnInit, OnDestroy {
   public userName: string = "";
 
   public token: any;
-  private timer:any;
+  private timer: any;
 
-  constructor(public location: Location, private router: Router,
-              public authService: AuthService) {
-    this.token = this.authService.getToken();
-    
+  constructor(
+    public location: Location,
+    private router: Router,
+    public authService: AuthService
+  ) {
+    // this.token = this.authService.getToken();
+
     setTimeout(() => {
       clearInterval(this.timer);
     }, 60000);
@@ -80,5 +83,4 @@ export class NavbarComponent implements OnInit, OnDestroy {
     this.userName = undefined;
     this.router.navigateByUrl("/signin");
   }
-
 }
