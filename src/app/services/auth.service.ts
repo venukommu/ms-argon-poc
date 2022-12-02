@@ -172,4 +172,10 @@ export class AuthService {
         })
       );
   }
+
+  getToken(){
+    var currentUser = JSON.parse(localStorage.getItem("currentUser"));
+    var token = currentUser && currentUser.token;
+    return token;
+  }
 }
