@@ -4,6 +4,7 @@ import { NgModule } from "@angular/core";
 import { Router } from "@angular/router";
 import { FormArray, FormBuilder, FormGroup, Validators } from "@angular/forms";
 import { AuthService } from "src/app/services/auth.service";
+import { NotificationsService } from "src/app/services/notifications.service";
 
 @Component({
   selector: "app-forgot-password",
@@ -19,7 +20,8 @@ export class ForgotPasswordComponent implements OnInit {
   };
 
   constructor(private router: Router, private fb: FormBuilder,
-    private authService: AuthService) {
+    private authService: AuthService, 
+    private notificationService: NotificationsService) {
     this.emailForm = this.fb.group({
       email: [
         null,
@@ -68,8 +70,12 @@ export class ForgotPasswordComponent implements OnInit {
     this.authService.forgotPassword(this.emailForm.value.email).subscribe((result) => {
       console.log(result, ">>>>>>>");
       if (result["status"] === true) {
-        
         this.router.navigateByUrl("/otp", { state: this.emailForm.value.email });
+      } else {
+        this.notificationService.showNotification(
+          result["status"],
+          "danger"
+        );
       }
     });
   }

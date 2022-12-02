@@ -42,8 +42,9 @@ export class OtpComponent implements OnInit {
       console.log(result, ">>>>>>>");
       if (result["status"] === "validToken") {
         this.router.navigateByUrl("/reset", { state: this.inputData });
+      } else {
+        this.notificationService.showNotification(result["status"], "danger");
       }
-      //this.notificationService.showNotification(result["message"], "success");
       //this.loading = false;
     });
   }

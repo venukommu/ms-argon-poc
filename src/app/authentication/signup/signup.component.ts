@@ -115,7 +115,7 @@ export class SignupComponent implements OnInit, OnDestroy {
           );
         } else {
           this.notificationService.showNotification(
-            this.toolConstService.getErrorMessages().userExist,
+            response['status'],
             "danger"
           );
         }
