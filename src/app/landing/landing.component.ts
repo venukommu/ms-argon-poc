@@ -15,6 +15,7 @@ export class LandingComponent implements OnInit {
   public userName: string = "";
   public specializations: any;
   public diagnosis: any;
+  public symptoms:any;
 
   specialitiesImgs = [
     {
@@ -74,23 +75,6 @@ export class LandingComponent implements OnInit {
       url: "/physicians",
     },
   ];
-  symptomsImgs = [
-    { img: "./assets/img/hospital/Acidity.png", title: "Acidity" },
-    { img: "./assets/img/hospital/Acne-01.png", title: "Acne" },
-    { img: "./assets/img/hospital/Anxiety.png", title: "Anxiety" },
-    { img: "./assets/img/hospital/Back-Pain.png", title: "Back-Pain" },
-    {
-      img: "./assets/img/hospital/Constipation.png",
-      title: "Constipation",
-    },
-    {
-      img: "./assets/img/hospital/Cough-01.png",
-      title: "Cough",
-    },
-    { img: "./assets/img/hospital/Depression-01.png", title: "Depression" },
-    { img: "./assets/img/hospital/Fever-01.png", title: "Fever" },
-  ];
-
   focus: any;
   focus1: any;
 
@@ -99,6 +83,9 @@ export class LandingComponent implements OnInit {
     this.commonService.getSpecialties().subscribe((response) => {
       console.log("response",response);
       this.specializations = response['specializations'];
+    });
+    this.commonService.getSymptoms().subscribe((response) => {
+      this.symptoms = response['symptoms'];
     });
     
   }

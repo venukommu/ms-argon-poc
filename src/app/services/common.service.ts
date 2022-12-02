@@ -15,8 +15,8 @@ export class CommonService {
   public error: any;
   
   constructor(private httpClient: HttpClient) {}
-    private fullUrl = "http://msspoc.ap-south-1.elasticbeanstalk.com";
-    //private fullUrl = "http://localhost:8080";
+    //private fullUrl = "http://msspoc.ap-south-1.elasticbeanstalk.com";
+    private fullUrl = "http://localhost:8080";
 
   getToken() {
     var currentUser = JSON.parse(localStorage.getItem("currentUser"));
@@ -41,5 +41,21 @@ export class CommonService {
         })
       );
   }
-
+  getSymptoms() {
+    return this.httpClient
+      .get(this.fullUrl + "/prov/symptoms", {
+        headers: commonHeaders,
+      })
+      .pipe(
+        map((data) => {
+          return data;
+        })
+      )
+      .pipe(
+        catchError((err) => {
+          console.log(err, "ERERER>>>>>>>>>>>>>>>>>");
+          return err;
+        })
+      );
+  }
 }
