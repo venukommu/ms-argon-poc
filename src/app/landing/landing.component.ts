@@ -50,47 +50,41 @@ export class LandingComponent implements OnInit {
 
   diagnosisImgs = [
     {
-      img: "./assets/img/hospital/self-check-Migraine.png",
       title: "Migraine",
       url: "/migraine-treatment-doctors",
     },
     {
-      img: "./assets/img/hospital/selfcheck-Diabetes.png",
       title: "Diabetes",
       url: "/diabetes-treatment-doctors",
     },
     {
-      img: "./assets/img/hospital/selfcheck-Thyroid.png",
       title: "Thyroid",
       url: "#",
     },
     {
-      img: "./assets/img/hospital/selfcheck-Heart-Health.png",
-      title: "Heart Health",
+      title: "Heart-Health",
       url: "#",
     },
     {
-      img: "./assets/img/hospital/selfcheck-COVID.png",
-      title: "COVID-19",
+      title: "COVID",
       url: "/physicians",
     },
   ];
+
   focus: any;
   focus1: any;
 
   constructor(private router: Router, private commonService: CommonService) {
 
     this.commonService.getSpecialties().subscribe((response) => {
-      console.log("response",response);
       this.specializations = response['specializations'];
-    });
+    }); 
     this.commonService.getSymptoms().subscribe((response) => {
       this.symptoms = response['symptoms'];
     });
     this.commonService.getDiagnosis().subscribe((response) => {
-      this.symptoms = response['diagnosis'];
-    });
-    
+      this.diagnosis = response['diagnosis'];
+    });   
   }
 
   scrollLeft() {
@@ -203,6 +197,27 @@ export class LandingComponent implements OnInit {
       },
     };
     console.log("this.userName",this.userName);
+    if (this.userName === undefined) {
+      this.router.navigateByUrl("/signin", naviagtionExtras);
+    } else {
+      setTimeout(() => {
+        this.router.navigateByUrl(url);
+      }, 500);
+    }
+  }
+
+  diagRoute(name){
+    var url;
+    for( let spl of this.diagnosisImgs){
+      if (spl.title === name){
+        url = spl.url;
+      }
+    }
+    const naviagtionExtras: NavigationExtras = {
+      queryParams: {
+        routeName: url,
+      },
+    };
     if (this.userName === undefined) {
       this.router.navigateByUrl("/signin", naviagtionExtras);
     } else {

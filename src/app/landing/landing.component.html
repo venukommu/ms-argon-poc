@@ -136,6 +136,7 @@
                   <div class="px-2">
                     <img
                       src="{{ sym.symptomImgUrl }}"
+                      alt="{{ sym.symptomDescription }}"
                       class="rounded img-center shadow shadow-lg--hover"
                       style="width: 175px"
                     />
@@ -186,16 +187,16 @@
                   style="display: flex"
                 >
                   <div class="px-2">
-                    <a (click)="splRoute(daigno.url)">
+                    <a (click)="diagRoute(daigno.diagnosisDescription)">
                       <img
-                        src="{{ daigno.dignosisImgUrl }}"
-                        alt="{{ daigno.diagnosisName }}"
+                        src="{{ daigno.diagnosisImgUrl }}"
+                        alt="{{ daigno.diagnosisDescription }}"
                         class="img-center img-responsive"
                         style="width: 170px"
                     /></a>
                     <div class="pt-4 text-center">
                       <h5 class="title">
-                        <span class="d-block mb-1">{{ daigno.diagnosisName }}</span>
+                        <span class="d-block mb-1">{{ daigno.diagnosisDescription }}</span>
                       </h5>
                     </div>
                   </div>

@@ -62,7 +62,7 @@ export class AuthService {
             //let decodedJwtJsonData = window.atob(jwtData);
             //let decodedJwtData = JSON.parse(decodedJwtJsonData);
 
-            this.role = response["userDetails"].userRoles[0].authority;
+            this.role = response["userDetails"].authorities[0].authority;
             console.log("roles", this.role)
             // if (roles.includes("ROLE_DOCTOR")) {
             //   this.role = "Doctor";
