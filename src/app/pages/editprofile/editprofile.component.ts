@@ -10,6 +10,8 @@ export class EditprofileComponent implements OnInit {
   editForm : FormGroup;
   public userName: any;
   public role: any;
+  states: any = ['Andhra Pradesh', 'Arunachal Pradesh', 'Assam', 'Bihar'];
+  cities: any = ['Vijayawada', 'Visakhapatnam', 'Vizianagaram', 'Rajahmundry'];
 
   constructor(private formBuilder: FormBuilder) { 
     this.editForm = this.formBuilder.group({
