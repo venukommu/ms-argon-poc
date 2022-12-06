@@ -1,5 +1,5 @@
 import { Injectable } from "@angular/core";
-import { HttpClient } from "@angular/common/http";
+import { HttpClient, HttpHeaders } from "@angular/common/http";
 import { commonHeaders } from "./common.headers";
 import { map, catchError } from "rxjs/operators";
 import { NotificationsService } from "./notifications.service";
@@ -15,8 +15,8 @@ export class CommonService {
   public error: any;
   
   constructor(private httpClient: HttpClient) {}
-    //private fullUrl = "http://msspoc.ap-south-1.elasticbeanstalk.com";
-    private fullUrl = "http://localhost:8080";
+    private fullUrl = "http://msspoc.ap-south-1.elasticbeanstalk.com";
+    //private fullUrl = "http://localhost:8080";
 
   getToken() {
     var currentUser = JSON.parse(localStorage.getItem("currentUser"));
@@ -64,6 +64,31 @@ export class CommonService {
       .get(this.fullUrl + "/prov/diagnosis", {
         headers: commonHeaders,
       })
+      .pipe(
+        map((data) => {
+          return data;
+        })
+      )
+      .pipe(
+        catchError((err) => {
+          console.log(err, "ERERER>>>>>>>>>>>>>>>>>");
+          return err;
+        })
+      );
+  }
+
+  doctorActivity(body){
+    var token = this.getToken();
+    const httpOptions = { 
+      headers: new HttpHeaders(
+      { 
+        "Content-Type": "application/json",
+        'Authorization': "Bearer "+token
+      
+      })
+    };
+    return this.httpClient
+      .post(this.fullUrl + "/saveDocSpecialization",body, httpOptions)
       .pipe(
         map((data) => {
           return data;
