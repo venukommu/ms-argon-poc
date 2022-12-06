@@ -62,7 +62,7 @@ export class AuthService {
             //let decodedJwtJsonData = window.atob(jwtData);
             //let decodedJwtData = JSON.parse(decodedJwtJsonData);
 
-            this.role = response["userDetails"].userRoles[0].authority;
+            this.role = response["userDetails"].authorities[0].authority;
             console.log("roles", this.role)
             // if (roles.includes("ROLE_DOCTOR")) {
             //   this.role = "Doctor";
@@ -79,7 +79,8 @@ export class AuthService {
                 username: response["userDetails"].username,
                 token: token,
                 role: this.role,
-                name: response["userDetails"].fullName
+                name: response["userDetails"].fullName,
+                userId: response["userDetails"].userId
               })
             );
           }
@@ -169,6 +170,79 @@ export class AuthService {
       .pipe(
         catchError((err) => {
           console.log(err, "ERERER>>>>>>>>>>>>>>>>>");
+          return err;
+        })
+      );
+  }
+  getToken() {
+    var currentUser = JSON.parse(localStorage.getItem("currentUser"));
+    var token = currentUser && currentUser.token;
+    return token;
+  }
+
+  
+  editPatient(body) {
+    var token = this.getToken();
+    console.log("token", token);
+    const httpOptions = { 
+      headers: new HttpHeaders(
+      { "Accept": "application/json",
+        "Content-Type": "application/json",
+         'JWT-AUTH-TOKEN': token,
+      
+      })
+  };
+    return this.httpClient
+    .post(this.fullUrl + `/saveProfile`, body, httpOptions)
+    .pipe(
+      map((res) => {
+        console.log(res);
+        return res;
+      })
+    )
+    .pipe(
+      catchError((err) => {
+              console.log(err);
+              this.handleError(this.toolConstService.getErrorMessages().updateFailed);
+              return err;
+            })
+    );
+    // return this.httpClient
+    //   .post(this.fullUrl + `/saveProfile`, body, {
+    //     headers: commonHeaders,
+    //   })
+    //   .pipe(
+    //     map((res: any) => {
+    //       console.log(res);
+    //       return res;
+    //     })
+    //   )
+    //   .pipe(
+    //     catchError((err) => {
+    //       console.log(err);
+    //       this.handleError(this.toolConstService.getErrorMessages().updateFailed);
+    //       return err;
+    //     })
+    //   );
+  }
+
+  editProvider(body) {
+    console.log(body);
+    console.log("commonHeaders", commonHeaders)
+    return this.httpClient
+      .post(this.fullUrl + `/saveDocProfile`, body, {
+        headers: commonHeaders,
+      })
+      .pipe(
+        map((res: any) => {
+          console.log(res);
+          return res;
+        })
+      )
+      .pipe(
+        catchError((err) => {
+          console.log(err);
+          this.handleError(this.toolConstService.getErrorMessages().updateFailed);
           return err;
         })
       );

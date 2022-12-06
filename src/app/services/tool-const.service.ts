@@ -22,7 +22,8 @@ const errorMessages = {
   pleaseSelectDoctor: "Please Assign Doctor",
   pleaseEnterDepartment: "Please Enter Department",
   pleaseEnterAdmissionStatus: "Please Enter Admission Status",
-  pleaseEnterValidPassword: "Please Enter valid Password",
+  pleaseEnterValidPassword: "Please Enter valid Password",  
+  updateFailed:"Update Failed"
 };
 
 const successMessage = {
@@ -32,6 +33,7 @@ const successMessage = {
   appove: "Recording Approved.",
   docAssined: "Doctor Assigned Successfully",
   diagnosisAdd: "Diagnosis Captured Successfully",
+  patientInfoUpdated: "Patient Info Updated Successfully"
 };
 
 const processingMessage = {
