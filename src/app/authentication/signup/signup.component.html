@@ -49,12 +49,9 @@
               *ngIf="m.fullName.touched && m.fullName.invalid"
               style="color: red; padding-left: 55px"
             >
-              <small *ngIf="m.fullName.errors?.required"
-                >Full name is required</small
-              >
-              <small *ngIf="m.fullName.errors?.minlength"
-                >Name must be at least 4 characters</small
-              >
+              <small *ngIf="m.fullName.errors?.required">Full name is required</small>
+              <small *ngIf="m.fullName.errors?.pattern">Invalid Full name</small>
+              <small *ngIf="m.fullName.errors?.whitespace">Whitespace is not allowed</small>
             </div>
           </div>
           <div class="form-group">
