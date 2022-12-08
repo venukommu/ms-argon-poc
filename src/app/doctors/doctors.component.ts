@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { CommonService } from "src/app/services/common.service";
+import { NotificationsService } from "src/app/services/notifications.service";
 
 @Component({
   selector: 'app-doctors',
@@ -22,7 +24,23 @@ export class DoctorsComponent implements OnInit {
     },
   ];
 
-  constructor() { }
+  constructor(private commonService: CommonService, 
+    private  notificationService: NotificationsService) { 
+    this.commonService.getDoctors().subscribe((response) => {
+      console.log("response", response);
+      if (response['status'] === "true") {
+        this.notificationService.showNotification(
+          response['status'],
+          "success"
+        );
+      } else {
+        this.notificationService.showNotification(
+          response['status'],
+          "danger"
+        );
+      }
+    });
+  }
 
   openPopup() {
     let popup = document.getElementById("popup");

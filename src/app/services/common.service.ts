@@ -101,4 +101,23 @@ export class CommonService {
         })
       );
   }
+
+  getDoctors() {
+    return this.httpClient
+      .get(this.fullUrl + "/prov/doctors", {
+        headers: commonHeaders,
+      })
+      .pipe(
+        map((data) => {
+          console.log("data", data);
+          return data;
+        })
+      )
+      .pipe(
+        catchError((err) => {
+          console.log(err, "ERERER>>>>>>>>>>>>>>>>>");
+          return err;
+        })
+      );
+  }
 }
