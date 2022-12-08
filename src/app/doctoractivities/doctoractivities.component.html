@@ -15,130 +15,28 @@
 
   <div class="WC_SymptomGroup__Items">
     <div class="row" style="padding-left: 50px">
+      <div *ngFor="let spl of specializations">
       <button type="button" class="btn btn-outline-info btn-sm button-img">
         <div class="WC_SymptomPill">
-          <div class="custom-control custom-checkbox mb-4">
-            <input
-              class="custom-control-input"
-              id="customCheck1"
-              type="checkbox"
-            />
-            <label class="custom-control-label" for="customCheck1"> </label>
-          </div>
-          <div class="WC_SymptomPill__Image">
-            <img
-              src="/assets/img/hospital/physician.svg"
-              class="WC_SymptomPill__Image__Img"
-            />
-          </div>
-          <div class="pt-2 WC_SymptomPill__Name">physician</div>
-        </div>
-      </button>
-      <button class="btn btn-outline-info btn-sm button-img">
-        <div class="WC_SymptomPill">
           <div class="WC_SymptomPill__Image">
             <div class="custom-control custom-checkbox mb-4">
               <input
                 class="custom-control-input"
-                id="customCheck2"
+                id="spl+{{spl.specializationId}}"
                 type="checkbox"
+                (click)="selectedItem(spl.specializationId,'Specialization',$event.target.checked)"
               />
-              <label class="custom-control-label" for="customCheck2">
-                <!-- <span>Unchecked</span> -->
-              </label>
+              <label class="custom-control-label" for="spl+{{spl.specializationId}}"> </label>
             </div>
             <img
-              src="/assets/img/hospital/gynaecologist.svg"
-              class="WC_SymptomPill__Image__Img"
-            />
-            <div class="pt-2 WC_SymptomPill__Name">Gynaecologist</div>
-          </div>
-        </div>
-      </button>
-      <button class="btn btn-outline-info btn-sm button-img">
-        <div class="WC_SymptomPill">
-          <div class="WC_SymptomPill__Image">
-            <div class="custom-control custom-checkbox mb-4">
-              <input
-                class="custom-control-input"
-                id="customCheck3"
-                type="checkbox"
-              />
-              <label class="custom-control-label" for="customCheck3">
-                <!-- <span>Unchecked</span> -->
-              </label>
-            </div>
-            <img
-              src="/assets/img/hospital/pediatrician.svg"
-              class="WC_SymptomPill__Image__Img"
-            />
-            <div class="pt-2 WC_SymptomPill__Name">Pediatrician</div>
-          </div>
-        </div>
-      </button>
-      <button class="btn btn-outline-info btn-sm button-img">
-        <div class="WC_SymptomPill">
-          <div class="WC_SymptomPill__Image">
-            <div class="custom-control custom-checkbox mb-4">
-              <input
-                class="custom-control-input"
-                id="customCheck4"
-                type="checkbox"
-              />
-              <label class="custom-control-label" for="customCheck4">
-                <!-- <span>Unchecked</span> -->
-              </label>
-            </div>
-            <img
-              src="/assets/img/hospital/orthopedician.svg"
+              src="{{ spl.specializationImgUrl }}"
               class="WC_SymptomPill__Image__Img"
             />
           </div>
-          <div class="pt-2 WC_SymptomPill__Name">orthopedician</div>
+          <div class="pt-2 WC_SymptomPill__Name">{{spl.specializationName}}</div>
         </div>
       </button>
-      <button class="btn btn-outline-info btn-sm button-img">
-        <div class="WC_SymptomPill">
-          <div class="WC_SymptomPill__Image">
-            <div class="custom-control custom-checkbox mb-4">
-              <input
-                class="custom-control-input"
-                id="customCheck5"
-                type="checkbox"
-              />
-              <label class="custom-control-label" for="customCheck5">
-                <!-- <span>Unchecked</span> -->
-              </label>
-            </div>
-            <img
-              src="/assets/img/hospital/physiotherapist.svg"
-              class="WC_SymptomPill__Image__Img"
-            />
-            <div class="pt-2 WC_SymptomPill__Name">physiotherapist</div>
-          </div>
-        </div>
-      </button>
-      <button class="btn btn-outline-info btn-sm button-img">
-        <div class="WC_SymptomPill">
-          <div class="WC_SymptomPill__Image">
-            <div class="custom-control custom-checkbox mb-4">
-              <input
-                class="custom-control-input"
-                id="customCheck6"
-                type="checkbox"
-              />
-              <label class="custom-control-label" for="customCheck6">
-                <!-- <span>Unchecked</span> -->
-              </label>
-            </div>
-            <img
-              src="/assets/img/hospital/eye-specialist.svg"
-              class="WC_SymptomPill__Image__Img"
-            />
-          </div>
-          <div class="pt-2 WC_SymptomPill__Name">eye-specialist</div>
-        </div>
-      </button>
+    </div>
     </div>
   </div>
 
@@ -153,133 +51,30 @@
   </div>
   <div class="WC_SymptomGroup__Items">
     <div class="row" style="padding-left: 50px">
+      <div *ngFor="let sym of symptoms">
       <button type="button" class="btn btn-outline-info btn-sm button-img">
         <div class="WC_SymptomPill">
           <div class="WC_SymptomPill__Image">
             <div class="custom-control custom-checkbox mb-4">
               <input
                 class="custom-control-input"
-                id="customCheck7"
+                id="sym+{{sym.symptomsId}}"
                 type="checkbox"
+                (click)="selectedItem(sym.symptomsId,'Symptoms',$event.target.checked)"
               />
-              <label class="custom-control-label" for="customCheck7">
+              <label class="custom-control-label" for="sym+{{sym.symptomsId}}">
                 <!-- <span>Unchecked</span> -->
               </label>
             </div>
             <img
-              src="/assets/img/hospital/symptoms/back-pain.png"
+              src="{{ sym.symptomImgUrl }}"
               class="WC_SymptomPill__Image__Img"
             />
           </div>
-          <div class="pt-2 WC_SymptomPill__Name">Back Pain</div>
+          <div class="pt-2 WC_SymptomPill__Name">{{ sym.symptomDescription }}</div>
         </div>
       </button>
-      <button class="btn btn-outline-info btn-sm button-img">
-        <div class="WC_SymptomPill">
-          <div class="WC_SymptomPill__Image">
-            <div class="custom-control custom-checkbox mb-4">
-              <input
-                class="custom-control-input"
-                id="customCheck18"
-                type="checkbox"
-              />
-              <label class="custom-control-label" for="customCheck18">
-                <!-- <span>Unchecked</span> -->
-              </label>
-            </div>
-            <img
-              src="/assets/img/hospital/symptoms/high-bp.png"
-              class="WC_SymptomPill__Image__Img"
-            />
-
-            <div class="pt-2 WC_SymptomPill__Name">High BP</div>
-          </div>
-        </div>
-      </button>
-      <button class="btn btn-outline-info btn-sm button-img">
-        <div class="WC_SymptomPill">
-          <div class="WC_SymptomPill__Image">
-            <div class="custom-control custom-checkbox mb-4">
-              <input
-                class="custom-control-input"
-                id="customCheck8"
-                type="checkbox"
-              />
-              <label class="custom-control-label" for="customCheck8">
-                <!-- <span>Unchecked</span> -->
-              </label>
-            </div>
-            <img
-              src="/assets/img/hospital/symptoms/constipation.png"
-              class="WC_SymptomPill__Image__Img"
-            />
-            <div class="pt-2 WC_SymptomPill__Name">Canstipation</div>
-          </div>
-        </div>
-      </button>
-      <button type="button" class="btn btn-outline-info btn-sm button-img">
-        <div class="WC_SymptomPill">
-          <div class="WC_SymptomPill__Image">
-            <div class="custom-control custom-checkbox mb-4">
-              <input
-                class="custom-control-input"
-                id="customCheck9"
-                type="checkbox"
-              />
-              <label class="custom-control-label" for="customCheck9">
-                <!-- <span>Unchecked</span> -->
-              </label>
-            </div>
-            <img
-              src="/assets/img/hospital/symptoms/diabetes.png"
-              class="WC_SymptomPill__Image__Img"
-            />
-          </div>
-          <div class="pt-2 WC_SymptomPill__Name">Diabetes</div>
-        </div>
-      </button>
-      <button class="btn btn-outline-info btn-sm button-img">
-        <div class="WC_SymptomPill">
-          <div class="WC_SymptomPill__Image">
-            <div class="custom-control custom-checkbox mb-4">
-              <input
-                class="custom-control-input"
-                id="customCheck10"
-                type="checkbox"
-              />
-              <label class="custom-control-label" for="customCheck10">
-                <!-- <span>Unchecked</span> -->
-              </label>
-            </div>
-            <img
-              src="/assets/img/hospital/symptoms/gas.png"
-              class="WC_SymptomPill__Image__Img"
-            />
-            <div class="pt-2 WC_SymptomPill__Name">Gas</div>
-          </div>
-        </div>
-      </button>
-      <button class="btn btn-outline-info btn-sm button-img">
-        <div class="WC_SymptomPill">
-          <div class="WC_SymptomPill__Image">
-            <div class="custom-control custom-checkbox mb-4">
-              <input
-                class="custom-control-input"
-                id="customCheck11"
-                type="checkbox"
-              />
-              <label class="custom-control-label" for="customCheck11">
-                <!-- <span>Unchecked</span> -->
-              </label>
-            </div>
-            <img
-              src="/assets/img/hospital/symptoms/throat-pain.png"
-              class="WC_SymptomPill__Image__Img"
-            />
-            <div class="pt-2 WC_SymptomPill__Name">Throat Pain</div>
-          </div>
-        </div>
-      </button>
+      </div>
     </div>
   </div>
 
@@ -292,132 +87,30 @@
   </div>
   <div class="WC_SymptomGroup__Items">
     <div class="row" style="padding-left: 50px">
-      <button type="button" class="btn btn-outline-info btn-sm button-img">
-        <div class="WC_SymptomPill">
-          <div class="WC_SymptomPill__Image">
-            <div class="custom-control custom-checkbox mb-4">
-              <input
-                class="custom-control-input"
-                id="customCheck12"
-                type="checkbox"
+      <div *ngFor="let daigno of diagnosis">
+        <button type="button" class="btn btn-outline-info btn-sm button-img">
+          <div class="WC_SymptomPill">
+            <div class="WC_SymptomPill__Image">
+              <div class="custom-control custom-checkbox mb-4">
+                <input
+                  class="custom-control-input"
+                  id="daigno+{{daigno.diagnosisId}}"
+                  type="checkbox"
+                  (click)="selectedItem(daigno.diagnosisId,'Diagnosis',$event.target.checked)"
+                />
+                <label class="custom-control-label" for="daigno+{{daigno.diagnosisId}}">
+                  <!-- <span>Unchecked</span> -->
+                </label>
+              </div>
+              <img
+                src="{{ daigno.diagnosisImgUrl }}"
+                class="WC_SymptomPill__Image__Img"
               />
-              <label class="custom-control-label" for="customCheck12">
-                <!-- <span>Unchecked</span> -->
-              </label>
             </div>
-            <img
-              src="/assets/img/hospital/symptoms/cough.png"
-              class="WC_SymptomPill__Image__Img"
-            />
+            <div class="pt-2 WC_SymptomPill__Name">{{ daigno.diagnosisDescription }}</div>
           </div>
-          <div class="pt-2 WC_SymptomPill__Name">Chronic Cough</div>
-        </div>
-      </button>
-      <button class="btn btn-outline-info btn-sm button-img">
-        <div class="WC_SymptomPill">
-          <div class="WC_SymptomPill__Image">
-            <div class="custom-control custom-checkbox mb-4">
-              <input
-                class="custom-control-input"
-                id="customCheck13"
-                type="checkbox"
-              />
-              <label class="custom-control-label" for="customCheck13">
-                <!-- <span>Unchecked</span> -->
-              </label>
-            </div>
-            <img
-              src="/assets/img/hospital/symptoms/diabetes.png"
-              class="WC_SymptomPill__Image__Img"
-            />
-            <div class="pt-2 WC_SymptomPill__Name">Diabetes</div>
-          </div>
-        </div>
-      </button>
-      <button class="btn btn-outline-info btn-sm button-img">
-        <div class="WC_SymptomPill">
-          <div class="WC_SymptomPill__Image">
-            <div class="custom-control custom-checkbox mb-4">
-              <input
-                class="custom-control-input"
-                id="customCheck14"
-                type="checkbox"
-              />
-              <label class="custom-control-label" for="customCheck14">
-                <!-- <span>Unchecked</span> -->
-              </label>
-            </div>
-            <img
-              src="/assets/img/hospital/symptoms/kidney.png"
-              class="WC_SymptomPill__Image__Img"
-            />
-            <div class="pt-2 WC_SymptomPill__Name">chronic Kidney Disease</div>
-          </div>
-        </div>
-      </button>
-      <button type="button" class="btn btn-outline-info btn-sm button-img">
-        <div class="WC_SymptomPill">
-          <div class="WC_SymptomPill__Image">
-            <div class="custom-control custom-checkbox mb-4">
-              <input
-                class="custom-control-input"
-                id="customCheck15"
-                type="checkbox"
-              />
-              <label class="custom-control-label" for="customCheck15">
-                <!-- <span>Unchecked</span> -->
-              </label>
-            </div>
-            <img
-              src="/assets/img/hospital/symptoms/Braintumor.png"
-              class="WC_SymptomPill__Image__Img"
-            />
-          </div>
-          <div class="pt-2 WC_SymptomPill__Name">Brain Tumor</div>
-        </div>
-      </button>
-      <button class="btn btn-outline-info btn-sm button-img">
-        <div class="WC_SymptomPill">
-          <div class="WC_SymptomPill__Image">
-            <div class="custom-control custom-checkbox mb-4">
-              <input
-                class="custom-control-input"
-                id="customCheck16"
-                type="checkbox"
-              />
-              <label class="custom-control-label" for="customCheck16">
-                <!-- <span>Unchecked</span> -->
-              </label>
-            </div>
-            <img
-              src="/assets/img/hospital/symptoms/Tuberculosis.png"
-              class="WC_SymptomPill__Image__Img"
-            />
-            <div class="pt-2 WC_SymptomPill__Name">Tuberculosis</div>
-          </div>
-        </div>
-      </button>
-      <button class="btn btn-outline-info btn-sm button-img">
-        <div class="WC_SymptomPill">
-          <div class="WC_SymptomPill__Image">
-            <div class="custom-control custom-checkbox mb-4">
-              <input
-                class="custom-control-input"
-                id="customCheck17"
-                type="checkbox"
-              />
-              <label class="custom-control-label" for="customCheck17">
-                <!-- <span>Unchecked</span> -->
-              </label>
-            </div>
-            <img
-              src="/assets/img/hospital/symptoms/Copd.png"
-              class="WC_SymptomPill__Image__Img"
-            />
-            <div class="pt-2 WC_SymptomPill__Name">COPD</div>
-          </div>
-        </div>
-      </button>
+        </button>
+      </div>
     </div>
   </div>
   <button class="button1" type="submit" (click)="openPopup()">Submit</button>
