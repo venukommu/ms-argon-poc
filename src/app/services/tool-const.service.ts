@@ -23,7 +23,8 @@ const errorMessages = {
   pleaseEnterDepartment: "Please Enter Department",
   pleaseEnterAdmissionStatus: "Please Enter Admission Status",
   pleaseEnterValidPassword: "Please Enter valid Password",  
-  updateFailed:"Update Failed"
+  updateFailed:"Update Failed",
+  fillRequiredElements: 'Please fill required elements',
 };
 
 const successMessage = {

@@ -21,7 +21,7 @@ export class AuthService {
     private toolConstService: ToolConstService,
     private router: Router) {}
     //private fullUrl = "http://msspoc.ap-south-1.elasticbeanstalk.com";
-  private fullUrl = "http://localhost:8080";
+    private fullUrl = "http://localhost:8080";
 
   signup(body) {
     console.log(body);
@@ -174,24 +174,23 @@ export class AuthService {
         })
       );
   }
+
   getToken() {
     var currentUser = JSON.parse(localStorage.getItem("currentUser"));
     var token = currentUser && currentUser.token;
     return token;
   }
-
   
   editPatient(body) {
     var token = this.getToken();
     console.log("token", token);
     const httpOptions = { 
       headers: new HttpHeaders(
-      { "Accept": "application/json",
-        "Content-Type": "application/json",
-         'JWT-AUTH-TOKEN': token,
-      
-      })
-  };
+      { 
+      "Content-Type": "application/json",
+      'Authorization': "Bearer "+token      
+       })
+      };
     return this.httpClient
     .post(this.fullUrl + `/saveProfile`, body, httpOptions)
     .pipe(
@@ -207,44 +206,33 @@ export class AuthService {
               return err;
             })
     );
-    // return this.httpClient
-    //   .post(this.fullUrl + `/saveProfile`, body, {
-    //     headers: commonHeaders,
-    //   })
-    //   .pipe(
-    //     map((res: any) => {
-    //       console.log(res);
-    //       return res;
-    //     })
-    //   )
-    //   .pipe(
-    //     catchError((err) => {
-    //       console.log(err);
-    //       this.handleError(this.toolConstService.getErrorMessages().updateFailed);
-    //       return err;
-    //     })
-    //   );
   }
 
   editProvider(body) {
     console.log(body);
-    console.log("commonHeaders", commonHeaders)
+    var token = this.getToken();
+    console.log("token", token);
+    const httpOptions = { 
+      headers: new HttpHeaders(
+      { 
+      "Content-Type": "application/json",
+      'Authorization': "Bearer "+token      
+       })
+      };
     return this.httpClient
-      .post(this.fullUrl + `/saveDocProfile`, body, {
-        headers: commonHeaders,
+    .post(this.fullUrl + `/saveDocProfile`, body, httpOptions)
+    .pipe(
+      map((res) => {
+        console.log(res);
+        return res;
       })
-      .pipe(
-        map((res: any) => {
-          console.log(res);
-          return res;
-        })
-      )
-      .pipe(
-        catchError((err) => {
-          console.log(err);
-          this.handleError(this.toolConstService.getErrorMessages().updateFailed);
-          return err;
-        })
-      );
+    )
+    .pipe(
+      catchError((err) => {
+              console.log(err);
+              this.handleError(this.toolConstService.getErrorMessages().updateFailed);
+              return err;
+            })
+    );
   }
 }
