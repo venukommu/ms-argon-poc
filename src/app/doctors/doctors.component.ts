@@ -8,7 +8,7 @@ import { NotificationsService } from "src/app/services/notifications.service";
   styleUrls: ['./doctors.component.scss']
 })
 export class DoctorsComponent implements OnInit {
-
+  public doctorsList = [];
   doctorsProfile = [
     { img: "./assets/img/hospital/doctor1.jpeg", name: "Dr. John", exp: "22 years exp",
     quali: "MBBS, MD (General Medicine)", prof: "Physician", lang: "English, Hindi", fee: "₹300 Consultation fee"},
@@ -28,17 +28,7 @@ export class DoctorsComponent implements OnInit {
     private  notificationService: NotificationsService) { 
     this.commonService.getDoctors().subscribe((response) => {
       console.log("response", response);
-      if (response['status'] === "true") {
-        this.notificationService.showNotification(
-          response['status'],
-          "success"
-        );
-      } else {
-        this.notificationService.showNotification(
-          response['status'],
-          "danger"
-        );
-      }
+      this.doctorsList = response['doctors'];
     });
   }
 
