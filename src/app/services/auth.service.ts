@@ -15,6 +15,7 @@ export class AuthService {
   public token: string;
   public role: any;
   public error: any;
+  public userId: any;
   
   constructor(private httpClient: HttpClient,
     private notificationService: NotificationsService,
@@ -63,6 +64,7 @@ export class AuthService {
             //let decodedJwtData = JSON.parse(decodedJwtJsonData);
 
             this.role = response["userDetails"].authorities[0].authority;
+            this.userId = response["userDetails"].userId;
             console.log("roles", this.role)
             // if (roles.includes("ROLE_DOCTOR")) {
             //   this.role = "Doctor";
@@ -79,6 +81,7 @@ export class AuthService {
                 username: response["userDetails"].username,
                 token: token,
                 role: this.role,
+                userId:this.userId
               })
             );
           }

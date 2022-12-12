@@ -83,4 +83,14 @@ export class NavbarComponent implements OnInit, OnDestroy {
     this.userName = undefined;
     this.router.navigateByUrl("/signin");
   }
+
+  providersReg(){
+    const currentUser = JSON.parse(localStorage.getItem("currentUser"));
+    console.log("currentUser", currentUser);
+    if (currentUser?.role === "Doctor") {
+      this.router.navigateByUrl("/doctor-activities")
+    } else {
+      this.router.navigateByUrl("/providers-registration")
+    }
+  }
 }
