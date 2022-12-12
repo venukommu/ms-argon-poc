@@ -106,6 +106,7 @@ editPatient() {
           this.toolConst.getSuccessMessage().patientInfoUpdated,
           "success"
         );
+        this.router.navigateByUrl(`/landing`);
       } else {
         this.notificationService.showNotification(
           response['status'],
@@ -144,6 +145,7 @@ editProvider() {
           this.toolConst.getSuccessMessage().patientInfoUpdated,
           "success"
         );
+        this.router.navigateByUrl(`/landing`);
       } else {
         this.notificationService.showNotification(
           response['status'],
