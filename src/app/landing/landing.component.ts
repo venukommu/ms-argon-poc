@@ -1,5 +1,6 @@
 import { Component, OnInit, ViewChild, ElementRef } from "@angular/core";
 import { NavigationExtras, Router } from "@angular/router";
+import { CommonService } from "../services/common.service";
 
 @Component({
   selector: "app-landing",
@@ -12,98 +13,79 @@ export class LandingComponent implements OnInit {
   @ViewChild("widgetsDiagnosis") widgetsDiagnosis: ElementRef;
 
   public userName: string = "";
+  public specializations: any;
+  public diagnosis: any;
+  public symptoms:any;
 
   specialitiesImgs = [
     {
-      img: "./assets/img/hospital/physician.svg",
       title: "Physician",
       url: "/physicians",
     },
     {
-      img: "./assets/img/hospital/gynaecologist.svg",
       title: "Gynaecologist",
       url: "/gynaecologist",
     },
     {
-      img: "./assets/img/hospital/pediatrician.svg",
       title: "Pediatrician",
       url: "/pediatrician",
     },
     {
-      img: "./assets/img/hospital/orthopedician.svg",
       title: "Orthopedician",
       url: "/ortho",
     },
     {
-      img: "./assets/img/hospital/eye-specialist.svg",
-      title: "Eye Specialist",
+      title: "Eye-specialist",
       url: "/eyespecialist",
     },
     {
-      img: "./assets/img/hospital/physiotherapist.svg",
       title: "Physiotherapist",
       url: "#",
     },
     {
-      img: "./assets/img/hospital/dentist.svg",
       title: "Dentist",
       url: "/dentist",
-    },
-    {
-      img: "./assets/img/hospital/more.svg",
-      title: "View all",
-      url: "/doctors",
-    },
+    }
   ];
 
   diagnosisImgs = [
     {
-      img: "./assets/img/hospital/self-check-Migraine.png",
       title: "Migraine",
       url: "/migraine-treatment-doctors",
     },
     {
-      img: "./assets/img/hospital/selfcheck-Diabetes.png",
       title: "Diabetes",
       url: "/diabetes-treatment-doctors",
     },
     {
-      img: "./assets/img/hospital/selfcheck-Thyroid.png",
       title: "Thyroid",
       url: "#",
     },
     {
-      img: "./assets/img/hospital/selfcheck-Heart-Health.png",
-      title: "Heart Health",
+      title: "Heart-Health",
       url: "#",
     },
     {
-      img: "./assets/img/hospital/selfcheck-COVID.png",
-      title: "COVID-19",
+      title: "COVID",
       url: "/physicians",
     },
-  ];
-  symptomsImgs = [
-    { img: "./assets/img/hospital/Acidity.png", title: "Acidity" },
-    { img: "./assets/img/hospital/Acne-01.png", title: "Acne" },
-    { img: "./assets/img/hospital/Anxiety.png", title: "Anxiety" },
-    { img: "./assets/img/hospital/Back-Pain.png", title: "Back-Pain" },
-    {
-      img: "./assets/img/hospital/Constipation.png",
-      title: "Constipation",
-    },
-    {
-      img: "./assets/img/hospital/Cough-01.png",
-      title: "Cough",
-    },
-    { img: "./assets/img/hospital/Depression-01.png", title: "Depression" },
-    { img: "./assets/img/hospital/Fever-01.png", title: "Fever" },
   ];
 
   focus: any;
   focus1: any;
 
-  constructor(private router: Router) {}
+  constructor(private router: Router, private commonService: CommonService) {
+
+    this.commonService.getSpecialties().subscribe((response) => {
+      this.specializations = response['specializations'];
+    }); 
+    this.commonService.getSymptoms().subscribe((response) => {
+      this.symptoms = response['symptoms'];
+    });
+    this.commonService.getDiagnosis().subscribe((response) => {
+      this.diagnosis = response['diagnosis'];
+    });   
+  }
 
   scrollLeft() {
     this.widgetsContent.nativeElement.scrollLeft -= 230;
@@ -201,7 +183,13 @@ export class LandingComponent implements OnInit {
 
   bubblyButtons = document.getElementsByClassName("button");
 
-  splRoute(url){
+  splRoute(name){
+    var url;
+    for( let spl of this.specialitiesImgs){
+      if (spl.title === name){
+        url = spl.url;
+      }
+    }
     console.log("url",url);
     const naviagtionExtras: NavigationExtras = {
       queryParams: {
@@ -217,4 +205,27 @@ export class LandingComponent implements OnInit {
       }, 500);
     }
   }
+
+  diagRoute(name){
+    var url;
+    for( let spl of this.diagnosisImgs){
+      if (spl.title === name){
+        url = spl.url;
+      }
+    }
+    const naviagtionExtras: NavigationExtras = {
+      queryParams: {
+        routeName: url,
+      },
+    };
+    if (this.userName === undefined) {
+      this.router.navigateByUrl("/signin", naviagtionExtras);
+    } else {
+      setTimeout(() => {
+        this.router.navigateByUrl(url);
+      }, 500);
+    }
+  }
+
+
 }

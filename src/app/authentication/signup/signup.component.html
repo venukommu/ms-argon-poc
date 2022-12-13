@@ -40,7 +40,7 @@
                 type="text"
                 class="form-control"
                 formControlName="fullName"
-                placeholder="Full Name..."
+                placeholder="Full Name"
                 required
               />
             </div>
@@ -49,12 +49,9 @@
               *ngIf="m.fullName.touched && m.fullName.invalid"
               style="color: red; padding-left: 55px"
             >
-              <small *ngIf="m.fullName.errors?.required"
-                >Full name is required</small
-              >
-              <small *ngIf="m.fullName.errors?.minlength"
-                >Name must be at least 4 characters</small
-              >
+              <small *ngIf="m.fullName.errors?.required">Full name is required</small>
+              <small *ngIf="m.fullName.errors?.pattern">Invalid Full name</small>
+              <small *ngIf="m.fullName.errors?.whitespace">Whitespace is not allowed</small>
             </div>
           </div>
           <div class="form-group">
@@ -68,7 +65,7 @@
                 type="email"
                 class="form-control"
                 formControlName="email"
-                placeholder="Email..."
+                placeholder="Email"
                 required
               />
             </div>
@@ -93,7 +90,7 @@
                 type="number"
                 class="form-control"
                 formControlName="mobileNumber"
-                placeholder="Mobile..."
+                placeholder="Mobile"
                 required
               />
             </div>
@@ -119,7 +116,7 @@
               <input
                 [type]="showPassword ? 'text' : 'password'"
                 formControlName="password"
-                placeholder="Password..."
+                placeholder="Password"
                 class="form-control"
                 required
               />

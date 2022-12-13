@@ -66,9 +66,15 @@ import { EditprofileComponent } from "./pages/editprofile/editprofile.component"
     AuthenticationModule,
     FormsModule,
     ReactiveFormsModule,
-    HttpClientModule
+    HttpClientModule,
   ],
-  providers: [AuthService, NotificationsService, ToolConstService, MatNativeDateModule ],
+  providers: [
+    AuthService,
+    NotificationsService,
+    ToolConstService,
+    MatNativeDateModule,
+    NavbarComponent,
+  ],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

@@ -15,13 +15,14 @@ export class AuthService {
   public token: string;
   public role: any;
   public error: any;
+  public userId: any;
   
   constructor(private httpClient: HttpClient,
     private notificationService: NotificationsService,
     private toolConstService: ToolConstService,
     private router: Router) {}
-    //private fullUrl = "http://msspoc.ap-south-1.elasticbeanstalk.com";
-    private fullUrl = "http://localhost:8080";
+    private fullUrl = "http://msspoc.ap-south-1.elasticbeanstalk.com";
+    //private fullUrl = "http://localhost:8080";
 
   signup(body) {
     console.log(body);
@@ -63,6 +64,7 @@ export class AuthService {
             //let decodedJwtData = JSON.parse(decodedJwtJsonData);
 
             this.role = response["userDetails"].authorities[0].authority;
+            this.userId = response["userDetails"].userId;
             console.log("roles", this.role)
             // if (roles.includes("ROLE_DOCTOR")) {
             //   this.role = "Doctor";
@@ -175,7 +177,7 @@ export class AuthService {
       );
   }
 
-  getToken() {
+  getToken(){
     var currentUser = JSON.parse(localStorage.getItem("currentUser"));
     var token = currentUser && currentUser.token;
     return token;

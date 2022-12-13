@@ -7,6 +7,7 @@ import { AuthService } from "src/app/services/auth.service";
 import { NotificationsService } from "src/app/services/notifications.service";
 import { ToolConstService } from "src/app/services/tool-const.service";
 import { PasswordStrengthValidator } from "./password-strength.validators";
+import { WhitespaceValidator } from "src/app/services/validators/whitespace.validator";
 
 @Component({
   selector: "app-signup",
@@ -29,7 +30,10 @@ export class SignupComponent implements OnInit, OnDestroy {
     private router: Router
   ) {
     this.register = this.formBuilder.group({
-      fullName: ["", [Validators.required, Validators.minLength(3)]],
+      fullName: ['', Validators.compose([
+        Validators.required,
+        Validators.pattern('[a-zA-Z ]*'), WhitespaceValidator
+    ])],
       // To add a validator, we must first convert the string value into an array. The first item in the array is the default value if any, then the next item in the array is the validator. Here we are adding a required validator meaning that the firstName attribute must have a value in it.
       email: [
         "",

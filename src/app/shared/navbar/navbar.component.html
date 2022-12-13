@@ -173,7 +173,7 @@
             data-toggle="dropdown"
             role="button"
             style="cursor: pointer"
-            [routerLink]="['/providers-registration']"
+            (click)="providersReg()"
           >
             <i class="ni ni-collection d-lg-none"></i>
             <span class="nav-link-inner--text hover__banner"
@@ -209,11 +209,10 @@
               flex-direction: row;
               align-items: center;
               cursor: pointer;
-            "
-          >
-            <i class="material-icons"> account_circle </i> &nbsp;
-            {{ userName }}</span
-          >
+            ">
+            {{ userName }} &nbsp;
+            <i class="material-icons">logout</i> 
+          </span>
         </li>
       </ul>
       <ul
