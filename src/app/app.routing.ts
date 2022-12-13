@@ -19,6 +19,7 @@ import { MigrainetreatmentdocsComponent } from "./migrainetreatmentdocs/migraine
 import { DiabetestreatmentdocsComponent } from "./diabetestreatmentdocs/diabetestreatmentdocs.component";
 import { DoctoractivitiesComponent } from "./doctoractivities/doctoractivities.component";
 import { ProviderRegistrationComponent } from "./provider-registration/provider-registration.component";
+import { EditprofileComponent } from "./pages/editprofile/editprofile.component";
 
 const routes: Routes = [
   // { path: "home", component: HomeComponent },
@@ -50,6 +51,10 @@ const routes: Routes = [
   {
     path: "providers-registration",
     component: ProviderRegistrationComponent,
+  },
+  {
+    path: "edit-profile",
+    component: EditprofileComponent,
   },
 ];
 

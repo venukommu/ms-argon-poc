@@ -131,6 +131,7 @@ export class SigninComponent implements OnInit {
           );
           if (this.routeName === undefined) {
             this.router.navigateByUrl(`/landing`);
+            //this.router.navigateByUrl(`/edit-profile`);
           } else {
             this.router.navigateByUrl(`/${this.routeName}`);
           }

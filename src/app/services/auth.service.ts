@@ -81,7 +81,8 @@ export class AuthService {
                 username: response["userDetails"].username,
                 token: token,
                 role: this.role,
-                userId:this.userId
+                name: response["userDetails"].fullName,
+                userId: response["userDetails"].userId
               })
             );
           }
@@ -180,5 +181,60 @@ export class AuthService {
     var currentUser = JSON.parse(localStorage.getItem("currentUser"));
     var token = currentUser && currentUser.token;
     return token;
+  }
+  
+  editPatient(body) {
+    var token = this.getToken();
+    console.log("token", token);
+    const httpOptions = { 
+      headers: new HttpHeaders(
+      { 
+      "Content-Type": "application/json",
+      'Authorization': "Bearer "+token      
+       })
+      };
+    return this.httpClient
+    .post(this.fullUrl + `/saveProfile`, body, httpOptions)
+    .pipe(
+      map((res) => {
+        console.log(res);
+        return res;
+      })
+    )
+    .pipe(
+      catchError((err) => {
+              console.log(err);
+              this.handleError(this.toolConstService.getErrorMessages().updateFailed);
+              return err;
+            })
+    );
+  }
+
+  editProvider(body) {
+    console.log(body);
+    var token = this.getToken();
+    console.log("token", token);
+    const httpOptions = { 
+      headers: new HttpHeaders(
+      { 
+      "Content-Type": "application/json",
+      'Authorization': "Bearer "+token      
+       })
+      };
+    return this.httpClient
+    .post(this.fullUrl + `/saveDocProfile`, body, httpOptions)
+    .pipe(
+      map((res) => {
+        console.log(res);
+        return res;
+      })
+    )
+    .pipe(
+      catchError((err) => {
+              console.log(err);
+              this.handleError(this.toolConstService.getErrorMessages().updateFailed);
+              return err;
+            })
+    );
   }
 }

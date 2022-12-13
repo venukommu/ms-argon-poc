@@ -33,6 +33,7 @@ import { DoctoractivitiesComponent } from "./doctoractivities/doctoractivities.c
 import { ProviderRegistrationComponent } from "./provider-registration/provider-registration.component";
 import { AuthService } from "./services/auth.service";
 import { HttpClientModule } from "@angular/common/http";
+import { EditprofileComponent } from "./pages/editprofile/editprofile.component";
 
 @NgModule({
   declarations: [
@@ -54,6 +55,7 @@ import { HttpClientModule } from "@angular/common/http";
     DiabetestreatmentdocsComponent,
     DoctoractivitiesComponent,
     ProviderRegistrationComponent,
+    EditprofileComponent
   ],
   imports: [
     BrowserModule,
