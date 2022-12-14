@@ -4,7 +4,7 @@ import { Router } from "@angular/router";
 import { AuthService } from "src/app/services/auth.service";
 import { NotificationsService } from "src/app/services/notifications.service";
 import { ToolConstService } from "src/app/services/tool-const.service";
-import { WhitespaceValidator } from 'src/app/validators/whitespace.validator';
+import { WhitespaceValidator } from 'src/app/services/validators/whitespace.validator';
 
 @Component({
   selector: 'app-editprofile',
@@ -101,9 +101,9 @@ editPatient() {
     };
 
     this.authService.editPatient(body).subscribe((response) => {
-      if (response === "true") {
+      if (response['status'] === "Profile updated successfully.") {
         this.notificationService.showNotification(
-          this.toolConst.getSuccessMessage().patientInfoUpdated,
+          response['status'],
           "success"
         );
         this.router.navigateByUrl(`/landing`);
@@ -140,12 +140,12 @@ editProvider() {
     };
  
     this.authService.editProvider(body).subscribe((response) => {
-      if (response === "true") {
+      if (response['status'] === "Profile updated successfully.") {
         this.notificationService.showNotification(
-          this.toolConst.getSuccessMessage().patientInfoUpdated,
+          response['status'],
           "success"
         );
-        this.router.navigateByUrl(`/landing`);
+        this.router.navigateByUrl('/landing');
       } else {
         this.notificationService.showNotification(
           response['status'],

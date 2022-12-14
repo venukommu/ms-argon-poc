@@ -6,6 +6,7 @@ import { BehaviorSubject, throwError } from "rxjs";
 import { NotificationsService } from "./notifications.service";
 import { ToolConstService } from "./tool-const.service";
 import { Router } from "@angular/router";
+import { CommonService } from "./common.service";
 
 @Injectable({
   providedIn: "root",
@@ -20,7 +21,7 @@ export class AuthService {
   constructor(private httpClient: HttpClient,
     private notificationService: NotificationsService,
     private toolConstService: ToolConstService,
-    private router: Router) {}
+    private router: Router, private commonService: CommonService) {}
     private fullUrl = "http://msspoc.ap-south-1.elasticbeanstalk.com";
     //private fullUrl = "http://localhost:8080";
 
@@ -177,14 +178,9 @@ export class AuthService {
       );
   }
 
-  getToken(){
-    var currentUser = JSON.parse(localStorage.getItem("currentUser"));
-    var token = currentUser && currentUser.token;
-    return token;
-  }
   
   editPatient(body) {
-    var token = this.getToken();
+    var token = this.commonService.getToken();
     console.log("token", token);
     const httpOptions = { 
       headers: new HttpHeaders(
@@ -212,7 +208,7 @@ export class AuthService {
 
   editProvider(body) {
     console.log(body);
-    var token = this.getToken();
+    var token = this.commonService.getToken();
     console.log("token", token);
     const httpOptions = { 
       headers: new HttpHeaders(
