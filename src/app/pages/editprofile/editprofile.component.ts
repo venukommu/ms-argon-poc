@@ -41,6 +41,7 @@ export class EditprofileComponent implements OnInit {
         state: ['', [Validators.required]],
         gender: ['', [Validators.required]],            
       }); 
+
       this.editProviderForm = this.formBuilder.group({
         firstName: ['', Validators.compose([
           Validators.required,
@@ -55,14 +56,23 @@ export class EditprofileComponent implements OnInit {
         age: ['', [Validators.required]],
         gender: ['', [Validators.required]],
         professinalStatement: ['', [Validators.required]],
-        practicingFrom: ['', [Validators.required]],          
+        practicingFrom: ['', [Validators.required]],  
+        language: ['', Validators.compose([
+          Validators.required,
+          Validators.pattern('[a-zA-Z ]*'), WhitespaceValidator
+        ])],     
+        qua: ['', Validators.compose([
+          Validators.required,
+          Validators.pattern('[a-zA-Z ]*'), WhitespaceValidator
+        ])], 
+        price: ['', [Validators.required]],  
       }); 
+
       var currentUser = JSON.parse(localStorage.getItem("currentUser"));
       console.log("currentUser", currentUser.name)
       this.userName = currentUser.name;
       this.role = currentUser.role;
       this.userId = currentUser.userId;
-      //this.adminOfficer = currentUser.username;
     }  
 
     get m(){
@@ -137,6 +147,9 @@ editProvider() {
       gender:                 gender,
       state:                  this.editProviderForm.value.state,
       city:                   this.editProviderForm.value.city,
+      qualification:          this.editProviderForm.value.qua,
+      languages:              this.editProviderForm.value.language,
+      consultation_fee:       this.editProviderForm.value.price, 
     };
  
     this.authService.editProvider(body).subscribe((response) => {

@@ -280,6 +280,52 @@
                   style="color: red; padding-left: 200px">
                   <small *ngIf="m.practicingFrom.errors?.required">Practicing From required</small>
                   </div>
+                  <div class="form-group">
+                    <div class="row">
+                        <label class="col-sm-3 col-form-label">Price:  </label>
+                        <div class="input-group col-sm-5">
+                            <input type="number" class="form-control" formControlName="price"
+                            required
+                        />
+                        </div>
+                    </div>
+                </div>
+                <div class="text-danger input-group" *ngIf="m.price.touched && m.price.invalid"
+                style="color: red; padding-left: 200px">
+                <small *ngIf="m.price.errors?.required">Price is required</small>
+                </div>
+                  <div class="form-group">
+                    <div class="row">
+                        <label class="col-sm-3 col-form-label">Languages:  </label>
+                        <div class="input-group col-sm-5">
+                            <input type="text" class="form-control" formControlName="language"
+                            required
+                        />
+                        </div>
+                    </div>
+                </div>
+                <div class="text-danger input-group" *ngIf="m.language.touched && m.language.invalid"
+                  style="color: red; padding-left: 200px">
+                  <small *ngIf="m.language.errors?.required">Language is required</small>
+                  <small *ngIf="m.language.errors?.pattern">Invalid Language</small>
+                  <small *ngIf="m.language.errors?.whitespace">Whitespace is not allowed</small>
+                </div>
+                <div class="form-group">
+                    <div class="row">
+                        <label class="col-sm-3 col-form-label">Qualification:  </label>
+                        <div class="input-group col-sm-5">
+                            <input type="text" class="form-control" formControlName="qua"
+                            required
+                        />
+                        </div>
+                    </div>
+                </div>
+                <div class="text-danger input-group" *ngIf="m.language.touched && m.language.invalid"
+                  style="color: red; padding-left: 200px">
+                  <small *ngIf="m.language.errors?.required">Qualification is required</small>
+                  <small *ngIf="m.language.errors?.pattern">Invalid Qualification</small>
+                  <small *ngIf="m.language.errors?.whitespace">Whitespace is not allowed</small>
+                </div>
                 </div>
             </div>
             <div class="card-footer text-center">
