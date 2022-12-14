@@ -1,4 +1,5 @@
 import { Component, OnInit } from "@angular/core";
+import { CommonService } from "../services/common.service";
 
 @Component({
   selector: "app-physicians",
@@ -6,6 +7,8 @@ import { Component, OnInit } from "@angular/core";
   styleUrls: ["./physicians.component.scss"],
 })
 export class PhysiciansComponent implements OnInit {
+  public doctorsList = [];
+  public currentYear: number;
   physiciansInfo = [
     {
       img: "./assets/img/hospital/doctor1.jpeg",
@@ -54,7 +57,14 @@ export class PhysiciansComponent implements OnInit {
     },
   ];
 
-  constructor() {}
+
+  constructor(private commonService: CommonService) {
+    this.currentYear = new Date().getFullYear();  
+    this.commonService.getDoctors().subscribe((response) => {
+      console.log("response", response);
+      this.doctorsList = response['doctors'];
+    });
+  }
 
   openPopup() {
     let popup = document.getElementById("popup");

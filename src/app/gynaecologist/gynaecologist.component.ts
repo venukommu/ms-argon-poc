@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { CommonService } from '../services/common.service';
 
 @Component({
   selector: 'app-gynaecologist',
@@ -6,7 +7,8 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./gynaecologist.component.scss']
 })
 export class GynaecologistComponent implements OnInit {
-
+  public doctorsList = [];
+  public currentYear: any;
   gynaecInfo = [
     { img: "./assets/img/hospital/doctor1.jpeg", name: "Dr. Anthony", exp: "22 years exp",
     quali: "MBBS, DNB", prof: "Gynaecologist", lang: "English, Hindi", fee: "₹300 Consultation fee" },
@@ -22,7 +24,13 @@ export class GynaecologistComponent implements OnInit {
     },
   ];
 
-  constructor() { }
+  constructor(private commonService: CommonService) {
+    this.currentYear = new Date().getFullYear();  
+    this.commonService.getDoctors().subscribe((response) => {
+      console.log("response", response);
+      this.doctorsList = response['doctors'];
+    });
+  }
 
   openPopup() {
     let popup = document.getElementById("popup");

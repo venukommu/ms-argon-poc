@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { CommonService } from '../services/common.service';
 
 @Component({
   selector: 'app-eyespecialist',
@@ -6,6 +7,8 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./eyespecialist.component.scss']
 })
 export class EyespecialistComponent implements OnInit {
+  public currentYear: number;
+  public doctorsList: [];
   eyespecInfo = [
     { img: "./assets/img/hospital/doctor1.jpeg", name: "Dr. Robert", exp: "22 years exp",
     quali: "MBBS, MD", prof: "Opthamologist", lang: "English, Hindi", fee: "₹300 Consultation fee" },
@@ -21,7 +24,13 @@ export class EyespecialistComponent implements OnInit {
     },
   ];
 
-  constructor() { }
+  constructor(private commonService: CommonService) {
+    this.currentYear = new Date().getFullYear();  
+    this.commonService.getDoctors().subscribe((response) => {
+      console.log("response", response);
+      this.doctorsList = response['doctors'];
+    });
+  }
 
   openPopup() {
     let popup = document.getElementById("popup");

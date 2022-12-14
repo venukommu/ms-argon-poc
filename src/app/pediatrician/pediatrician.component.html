@@ -4,28 +4,30 @@
 
     <section class="section section-lg">
         <div class="container1">
-            <div *ngFor="let docInfo of pediatricianInfo">
+            <div *ngFor="let docInfo of this.doctorsList">
                 <div class="card mb-2 main_card">
                     <div class="row g-0" style="padding: 20px;">
                         <div class="col-md-3 text-center">
                             <img width="150" height="150"
-                            src={{docInfo.img}}
+                            src='./assets/img/hospital/doctor1.jpeg'
                             class="img-fluid rounded img-center shadow shadow-lg--hover "
                             />
-                            <div class="pt-2">
-                                <button class="button2 btn btn-info btn-sm">{{docInfo.exp}}</button>
-                            </div> 
+                             <div class="pt-2">
+                                <button class="button2 btn btn-info btn-sm">{{ currentYear - (docInfo.practicingFrom | date:'yyyy')}} years exp</button>
+                            </div>  
                         </div>
                         <div class="col-md-5">
                             <div class="card-body">
-                            <h6 class="card-title">{{docInfo.name}}</h6>
-                            <p class="card-text text-muted">{{docInfo.quali}}</p>
-                            <p class="card-text">{{docInfo.prof}}</p>
+                            <h6 class="card-title">{{docInfo.firstName}} {{docInfo.lastName}}</h6>
+                            <p class="card-text text-muted">{{docInfo.qualification}}</p>
                             <p class="card-text">
-                                <small >{{docInfo.lang}}</small>
-                            </p>
+                              <small >Pediatrician</small>
+                          </p>
+                            <!-- <p class="card-text">{{docInfo.prof}}</p> -->
                             <p class="card-text">
-                                <small >{{docInfo.fee}}</small>
+                                <small >{{docInfo.languages}}</small></p>
+                            <p class="card-text">
+                                <small >${{docInfo.consultation_fee}}</small>
                             </p>
                             </div>
                         </div>
