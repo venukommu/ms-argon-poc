@@ -1,4 +1,5 @@
 import { Component, OnInit } from "@angular/core";
+import { CommonService } from "../services/common.service";
 
 @Component({
   selector: "app-migrainetreatmentdocs",
@@ -6,7 +7,15 @@ import { Component, OnInit } from "@angular/core";
   styleUrls: ["./migrainetreatmentdocs.component.scss"],
 })
 export class MigrainetreatmentdocsComponent implements OnInit {
-  constructor() {}
+  public currentYear: number;
+  public doctorsList: any;
+  constructor(private commonService: CommonService) {
+    this.currentYear = new Date().getFullYear();  
+    this.commonService.getDoctors().subscribe((response) => {
+      console.log("response", response);
+      this.doctorsList = response['doctors'];
+    });
+  }
   migrainedocInfo = [
     {
       img: "./assets/img/hospital/doctor1.jpeg",
