@@ -112,14 +112,14 @@ export class SignupComponent implements OnInit, OnDestroy {
       this.router.navigateByUrl("/signin");
 
       this.authService.signup(body).subscribe((response) => {
-        if (response === "true") {
+        if (response['status']) {
           this.notificationService.showNotification(
             this.toolConstService.getSuccessMessage().userCreated,
             "success"
           );
         } else {
           this.notificationService.showNotification(
-            response['status'],
+            this.toolConstService.getErrorMessages().userExist,
             "danger"
           );
         }

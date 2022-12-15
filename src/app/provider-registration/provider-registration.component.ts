@@ -103,11 +103,11 @@ export class ProviderRegistrationComponent implements OnInit {
           password: this.register.value.password,
           role: 'Doctor'
         };
-        console.log("body", body);
+
         this.router.navigateByUrl("/signin");
   
         this.authService.signup(body).subscribe((response) => {
-          if (response === "true") {
+          if (response['status']) {
             this.notificationService.showNotification(
               this.toolConstService.getSuccessMessage().userCreated,
               "success"
