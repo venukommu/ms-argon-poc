@@ -78,6 +78,7 @@ export class LandingComponent implements OnInit {
 
     this.commonService.getSpecialties().subscribe((response) => {
       this.specializations = response['specializations'];
+      console.log(this.specializations);
     }); 
     this.commonService.getSymptoms().subscribe((response) => {
       this.symptoms = response['symptoms'];
@@ -183,7 +184,7 @@ export class LandingComponent implements OnInit {
 
   bubblyButtons = document.getElementsByClassName("button");
 
-  splRoute(name){
+  splRoute(name, id){
     var url;
     for( let spl of this.specialitiesImgs){
       if (spl.title === name){
@@ -194,14 +195,22 @@ export class LandingComponent implements OnInit {
     const naviagtionExtras: NavigationExtras = {
       queryParams: {
         routeName: url,
+        Name: name,
+        Id: id
       },
     };
     console.log("this.userName",this.userName);
     if (this.userName === undefined) {
       this.router.navigateByUrl("/signin", naviagtionExtras);
     } else {
+      const naviagtionExtras: NavigationExtras = {
+        queryParams: {
+          Name: name,
+          Id: id
+        },
+      };
       setTimeout(() => {
-        this.router.navigateByUrl(url);
+        this.router.navigateByUrl('/physicians', naviagtionExtras);
       }, 500);
     }
   }

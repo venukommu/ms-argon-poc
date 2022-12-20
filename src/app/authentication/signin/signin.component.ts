@@ -1,6 +1,6 @@
 import { Component, OnInit } from "@angular/core";
 import { FormArray, FormBuilder, FormGroup, Validators } from "@angular/forms";
-import { Router } from "@angular/router";
+import { NavigationExtras, Router } from "@angular/router";
 import { AuthService } from "src/app/services/auth.service";
 import { NotificationsService } from "src/app/services/notifications.service";
 import { ToolConstService } from "src/app/services/tool-const.service";
@@ -17,6 +17,8 @@ export class SigninComponent implements OnInit {
   showPassword: boolean;
   error = "";
   zipcode = "";
+  name: any;
+  id: any;
 
   private routeName = "";
 
@@ -37,6 +39,8 @@ export class SigninComponent implements OnInit {
     console.log(patientParams?.routeName);
     localStorage.setItem("route", patientParams?.routeName);
     this.routeName = patientParams?.routeName;
+    this.name = patientParams?.Name;
+    this.id = patientParams?.Id;
 
     this.login = this.fb.group({
       email: [
@@ -133,7 +137,13 @@ export class SigninComponent implements OnInit {
             this.router.navigateByUrl(`/landing`);
             //this.router.navigateByUrl(`/edit-profile`);
           } else {
-            this.router.navigateByUrl(`/${this.routeName}`);
+            const naviagtionExtras: NavigationExtras = {
+              queryParams: {
+                Name: this.name,
+                Id: this.id
+              },
+            };
+            this.router.navigateByUrl(`/${this.routeName}`, naviagtionExtras);
           }
           var role = JSON.parse(currentUser)["role"];
           this.authService.getCurrentUser(role);
