@@ -187,7 +187,8 @@
                   style="display: flex"
                 >
                   <div class="px-2">
-                    <a (click)="diagRoute(daigno.diagnosisDescription)">
+                    <!-- <a (click)="diagRoute(daigno.diagnosisDescription)"> -->
+                      <a (click)="getDocList(daigno.diagnosisDescription,daigno.diagnosisId)">
                       <img
                         src="{{ daigno.diagnosisImgUrl }}"
                         alt="{{ daigno.diagnosisDescription }}"

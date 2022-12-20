@@ -1,6 +1,8 @@
+import { HttpParams } from "@angular/common/http";
 import { Component, OnInit, ViewChild, ElementRef } from "@angular/core";
 import { NavigationExtras, Router } from "@angular/router";
 import { CommonService } from "../services/common.service";
+import { NotificationsService } from "../services/notifications.service";
 
 @Component({
   selector: "app-landing",
@@ -16,6 +18,7 @@ export class LandingComponent implements OnInit {
   public specializations: any;
   public diagnosis: any;
   public symptoms:any;
+  public docList = [];
 
   specialitiesImgs = [
     {
@@ -74,7 +77,8 @@ export class LandingComponent implements OnInit {
   focus: any;
   focus1: any;
 
-  constructor(private router: Router, private commonService: CommonService) {
+  constructor(private router: Router, private commonService: CommonService,
+             private notificationService: NotificationsService) {
 
     this.commonService.getSpecialties().subscribe((response) => {
       this.specializations = response['specializations'];
@@ -84,6 +88,7 @@ export class LandingComponent implements OnInit {
     });
     this.commonService.getDiagnosis().subscribe((response) => {
       this.diagnosis = response['diagnosis'];
+      console.log("this.diagnosis", this.diagnosis)
     });   
   }
 
@@ -227,5 +232,32 @@ export class LandingComponent implements OnInit {
     }
   }
 
+  getDocList(name,id){
+    console.log("name", name)
+    console.log("id", id)
+    const naviagtionExtras: NavigationExtras = {
+      queryParams: {
+        specializationName: name,
+        specializationId: id
+      },
+    };
 
+      this.router.navigateByUrl("/migraine-treatment-doctors", naviagtionExtras);
+
+    // this.commonService.getDoctorsList(name,id).subscribe((response) => {
+    //   console.log("responce", response['doctorsList'])
+    //   if (response['doctorsList'].length > 0) {
+    //     this.docList = response['doctorsList'];
+
+    //     console.log("in if conditions", this.docList)
+    //     //this.router.navigateByUrl(`/migraine-treatment-doctors`);
+    //     this.router.navigateByUrl("/migraine-treatment-doctors", { DocList: this.docList });
+    //   } else {
+    //     this.notificationService.showNotification(
+    //       response['status'],
+    //       "danger"
+    //     );
+    //   }
+    // });
+  }
 }
