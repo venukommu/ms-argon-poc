@@ -17,37 +17,6 @@ export class LandingComponent implements OnInit {
   public diagnosis: any;
   public symptoms:any;
 
-  specialitiesImgs = [
-    {
-      title: "Physician",
-      url: "/physicians",
-    },
-    {
-      title: "Gynaecologist",
-      url: "/gynaecologist",
-    },
-    {
-      title: "Pediatrician",
-      url: "/pediatrician",
-    },
-    {
-      title: "Orthopedician",
-      url: "/ortho",
-    },
-    {
-      title: "Eye-specialist",
-      url: "/eyespecialist",
-    },
-    {
-      title: "Physiotherapist",
-      url: "#",
-    },
-    {
-      title: "Dentist",
-      url: "/dentist",
-    }
-  ];
-
   diagnosisImgs = [
     {
       title: "Migraine",
@@ -185,16 +154,9 @@ export class LandingComponent implements OnInit {
   bubblyButtons = document.getElementsByClassName("button");
 
   splRoute(name, id){
-    var url;
-    for( let spl of this.specialitiesImgs){
-      if (spl.title === name){
-        url = spl.url;
-      }
-    }
-    console.log("url",url);
     const naviagtionExtras: NavigationExtras = {
       queryParams: {
-        routeName: url,
+        routeName: "physicians",
         Name: name,
         Id: id
       },
@@ -203,12 +165,6 @@ export class LandingComponent implements OnInit {
     if (this.userName === undefined) {
       this.router.navigateByUrl("/signin", naviagtionExtras);
     } else {
-      const naviagtionExtras: NavigationExtras = {
-        queryParams: {
-          Name: name,
-          Id: id
-        },
-      };
       setTimeout(() => {
         this.router.navigateByUrl('/physicians', naviagtionExtras);
       }, 500);
