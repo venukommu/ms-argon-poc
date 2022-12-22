@@ -4,7 +4,7 @@
 
   <section class="section section-lg">
     <div class="container1">
-      <div *ngFor="let docInfo of this.doctorsList">
+      <div *ngFor="let docInfo of this.docList">
         <div class="card mb-2 main_card">
             <div class="row g-0" style="padding: 20px;">
                 <div class="col-md-3 text-center">
@@ -21,13 +21,13 @@
                     <h6 class="card-title">{{docInfo.firstName}} {{docInfo.lastName}}</h6>
                     <p class="card-text text-muted">{{docInfo.qualification}}</p>
                     <p class="card-text">
-                      <small >Neurologist</small>
+                      <small >{{this.title}}</small>
                   </p>
                     <!-- <p class="card-text">{{docInfo.prof}}</p> -->
                     <p class="card-text">
                         <small >{{docInfo.languages}}</small></p>
                     <p class="card-text">
-                        <small >${{docInfo.consultation_fee}} Consultation fee</small>
+                        <small >${{docInfo.consultationFee}}</small>
                     </p>
                     </div>
                 </div>

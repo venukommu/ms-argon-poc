@@ -149,7 +149,7 @@ editProvider() {
       city:                   this.editProviderForm.value.city,
       qualification:          this.editProviderForm.value.qua,
       languages:              this.editProviderForm.value.language,
-      consultation_fee:       this.editProviderForm.value.price, 
+      consultationFee:       this.editProviderForm.value.price, 
     };
  
     this.authService.editProvider(body).subscribe((response) => {

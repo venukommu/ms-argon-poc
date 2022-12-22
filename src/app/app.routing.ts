@@ -27,7 +27,7 @@ const routes: Routes = [
   { path: "selfcheck", component: SelfcheckComponent },
   { path: "physicians", component: PhysiciansComponent },
   {
-    path: "migraine-treatment-doctors",
+    path: "diagnosis-docs",
     component: MigrainetreatmentdocsComponent,
   },
   {

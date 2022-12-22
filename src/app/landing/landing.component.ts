@@ -17,29 +17,6 @@ export class LandingComponent implements OnInit {
   public diagnosis: any;
   public symptoms:any;
 
-  diagnosisImgs = [
-    {
-      title: "Migraine",
-      url: "/migraine-treatment-doctors",
-    },
-    {
-      title: "Diabetes",
-      url: "/diabetes-treatment-doctors",
-    },
-    {
-      title: "Thyroid",
-      url: "#",
-    },
-    {
-      title: "Heart-Health",
-      url: "#",
-    },
-    {
-      title: "COVID",
-      url: "/physicians",
-    },
-  ];
-
   focus: any;
   focus1: any;
 
@@ -171,26 +148,31 @@ export class LandingComponent implements OnInit {
     }
   }
 
-  diagRoute(name){
-    var url;
-    for( let spl of this.diagnosisImgs){
-      if (spl.title === name){
-        url = spl.url;
+   getDocList(name,id){
+    if(name === 'Migraine'){
+      var diagTitle = 'Neurologist';
+    } else if(name === 'Diabetes' || name === 'Thyroid'){
+      var diagTitle = 'Endocrinologist';
+    } else if(name === 'Heart-Health'){
+      var diagTitle = 'Cardiologist';
+    }else if(name === 'COVID'){
+      var diagTitle = 'Physician';
+    }
+
+  
+      const naviagtionExtras: NavigationExtras = {
+        queryParams: {
+          routeName: "diagnosis-docs",
+          Id: id,
+          Title: diagTitle
+        },
+      };
+      if (this.userName === undefined) {
+        this.router.navigateByUrl("/signin", naviagtionExtras);
+      } else {
+        setTimeout(() => {
+          this.router.navigateByUrl("/diagnosis-docs", naviagtionExtras);
+        }, 500);
       }
-    }
-    const naviagtionExtras: NavigationExtras = {
-      queryParams: {
-        routeName: url,
-      },
-    };
-    if (this.userName === undefined) {
-      this.router.navigateByUrl("/signin", naviagtionExtras);
-    } else {
-      setTimeout(() => {
-        this.router.navigateByUrl(url);
-      }, 500);
-    }
   }
-
-
 }
