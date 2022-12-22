@@ -23,7 +23,6 @@ import { SelfcheckComponent } from "./selfcheck/selfcheck.component";
 import { DoctorsComponent } from "./doctors/doctors.component";
 import { PhysiciansComponent } from "./physicians/physicians.component";
 import { MigrainetreatmentdocsComponent } from "./migrainetreatmentdocs/migrainetreatmentdocs.component";
-import { DiabetestreatmentdocsComponent } from "./diabetestreatmentdocs/diabetestreatmentdocs.component";
 import { DoctoractivitiesComponent } from "./doctoractivities/doctoractivities.component";
 import { ProviderRegistrationComponent } from "./provider-registration/provider-registration.component";
 import { AuthService } from "./services/auth.service";
@@ -42,7 +41,6 @@ import { EditprofileComponent } from "./pages/editprofile/editprofile.component"
     DoctorsComponent,
     PhysiciansComponent,
     MigrainetreatmentdocsComponent,
-    DiabetestreatmentdocsComponent,
     DoctoractivitiesComponent,
     ProviderRegistrationComponent,
     EditprofileComponent

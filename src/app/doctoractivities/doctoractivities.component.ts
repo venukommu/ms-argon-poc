@@ -50,7 +50,7 @@ export class DoctoractivitiesComponent implements OnInit {
   openPopup() {
     if (this.docSpecial.length > 0) {   
       this.commonService.doctorActivity(this.docSpecial).subscribe((response) => {
-        if (response['status'] === "true") {
+        if (response['status'] === true) {
           this.notificationService.showNotification(
             this.toolConstService.getSuccessMessage().saved,
             "success"
