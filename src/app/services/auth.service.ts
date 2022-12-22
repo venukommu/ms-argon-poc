@@ -237,4 +237,27 @@ export class AuthService {
             })
     );
   }
+
+  doctorsList(searchItems){
+    console.log(searchItems, "entity>>>>>>>>>>>>>>>>>");
+
+    return this.httpClient
+      .post(this.fullUrl + "/prov/searchDoctors", searchItems, {
+        headers: new HttpHeaders({Accept: "application/json",}),
+      })
+      .pipe(
+        map((data) => {
+          var res = data;
+          console.log(res, "ERERER>>>>>>>>>>>>>>>>>");
+          return res;
+        })
+      )
+      .pipe(
+        catchError((err) => {
+          console.log(err, "ERERER>>>>>>>>>>>>>>>>>");
+          return err;
+        })
+      );
+  }
+
 }
