@@ -235,29 +235,19 @@ export class LandingComponent implements OnInit {
   getDocList(name,id){
     console.log("name", name)
     console.log("id", id)
+    if(name === 'Migraine'){
+      var diagTitle = 'Neurologist';
+    } else if(name === 'Diabetes' || name === 'Thyroid'){
+      var diagTitle = 'Endocrinologist';
+    }
+    
     const naviagtionExtras: NavigationExtras = {
       queryParams: {
         specializationName: name,
-        specializationId: id
+        specializationId: id,
+        specializationTitle: diagTitle
       },
     };
-
-      this.router.navigateByUrl("/migraine-treatment-doctors", naviagtionExtras);
-
-    // this.commonService.getDoctorsList(name,id).subscribe((response) => {
-    //   console.log("responce", response['doctorsList'])
-    //   if (response['doctorsList'].length > 0) {
-    //     this.docList = response['doctorsList'];
-
-    //     console.log("in if conditions", this.docList)
-    //     //this.router.navigateByUrl(`/migraine-treatment-doctors`);
-    //     this.router.navigateByUrl("/migraine-treatment-doctors", { DocList: this.docList });
-    //   } else {
-    //     this.notificationService.showNotification(
-    //       response['status'],
-    //       "danger"
-    //     );
-    //   }
-    // });
+    this.router.navigateByUrl("/migraine-treatment-doctors", naviagtionExtras);
   }
 }

@@ -10,6 +10,7 @@ import { Router } from "@angular/router";
 export class MigrainetreatmentdocsComponent implements OnInit {
   public currentYear: number;
   public docList : any;
+  public title:any;
 
   constructor(private commonService: CommonService, private router: Router) {
     this.currentYear = new Date().getFullYear();  
@@ -17,6 +18,7 @@ export class MigrainetreatmentdocsComponent implements OnInit {
     const diagParams = this.router.getCurrentNavigation().extras?.queryParams;
     console.log("diagParams", diagParams)
     //this.diagName = diagParams.specializationName;
+    this.title = diagParams.specializationTitle;
     this.commonService.getDoctorsList('diagnosis',diagParams.specializationId).subscribe((response) => {
         console.log("responce", response['doctorsList'])
         if (response['doctorsList'].length > 0) {
