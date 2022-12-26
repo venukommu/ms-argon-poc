@@ -1,5 +1,5 @@
 import { Component, OnDestroy, OnInit } from "@angular/core";
-import { Router, NavigationEnd, NavigationStart } from "@angular/router";
+import { Router, NavigationEnd, NavigationStart, NavigationExtras } from "@angular/router";
 import { Location, PopStateEvent } from "@angular/common";
 import { AuthService } from "src/app/services/auth.service";
 
@@ -91,6 +91,21 @@ export class NavbarComponent implements OnInit, OnDestroy {
       this.router.navigateByUrl("/doctor-activities")
     } else {
       this.router.navigateByUrl("/providers-registration")
+    }
+  }
+
+  doctorsPage(){
+    const currentUser = JSON.parse(localStorage.getItem("currentUser"));
+    this.userName = currentUser?.username.split("@")[0];
+    if(this.userName === undefined) {
+      const naviagtionExtras: NavigationExtras = {
+        queryParams: {
+          routeName: "doctors"
+        },
+      };
+      this.router.navigateByUrl("/signin", naviagtionExtras);
+    } else {
+      this.router.navigateByUrl("/doctors");
     }
   }
 }
