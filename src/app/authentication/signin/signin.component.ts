@@ -122,7 +122,7 @@ export class SigninComponent implements OnInit {
       this.authService.login(body).subscribe((result) => {
         this.nav.checkUsername();
         console.log("result", result);
-        if (result["status"] === "Email does not exist") {
+        if (result["status"] === "Bad credentials") {
           console.log("result['status']", result["status"]);
           this.notificationService.showNotification(result["status"], "danger");
         } else {
