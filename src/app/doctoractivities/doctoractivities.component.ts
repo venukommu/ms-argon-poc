@@ -2,6 +2,7 @@ import { Component, OnInit } from "@angular/core";
 import { Router } from "@angular/router";
 import { CommonService } from "src/app/services/common.service";
 import { NotificationsService } from "src/app/services/notifications.service";
+import { ToolConstService } from "../services/tool-const.service";
 
 @Component({
   selector: "app-doctoractivities",
@@ -16,7 +17,8 @@ export class DoctoractivitiesComponent implements OnInit {
   public userId: any;
 
   constructor(private router: Router, private commonService:CommonService,
-    private notificationService:NotificationsService) {
+    private notificationService:NotificationsService,
+    private toolConstService: ToolConstService) {
       var currentUser = JSON.parse(
         JSON.stringify(localStorage.getItem("currentUser"))
       );
@@ -48,14 +50,14 @@ export class DoctoractivitiesComponent implements OnInit {
   openPopup() {
     if (this.docSpecial.length > 0) {   
       this.commonService.doctorActivity(this.docSpecial).subscribe((response) => {
-        if (response['status'] === "true") {
+        if (response['status'] === true) {
           this.notificationService.showNotification(
-            response['status'],
+            this.toolConstService.getSuccessMessage().saved,
             "success"
           );
-        } else {
+        } else {         
           this.notificationService.showNotification(
-            response['status'],
+            this.toolConstService.getErrorMessages().savingFailed,
             "danger"
           );
         }

@@ -76,7 +76,7 @@
                   style="display: flex"
                 >
                   <div class="px-2">
-                    <a (click)="splRoute(spl.specializationName)">
+                    <a (click)="splRoute(spl.specializationName, spl.specializationId)">
                       <img
                         src="{{ spl.specializationImgUrl }}"
                         alt="{{ spl.specializationName }}"
@@ -187,7 +187,7 @@
                   style="display: flex"
                 >
                   <div class="px-2">
-                    <a (click)="diagRoute(daigno.diagnosisDescription)">
+                    <a (click)="getDocList(daigno.diagnosisDescription,daigno.diagnosisId)">
                       <img
                         src="{{ daigno.diagnosisImgUrl }}"
                         alt="{{ daigno.diagnosisDescription }}"

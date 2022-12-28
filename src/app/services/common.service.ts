@@ -120,4 +120,25 @@ export class CommonService {
         })
       );
   }
+
+  getDoctorsList(name, id) {
+    return this.httpClient
+      .get(this.fullUrl + "/prov/getDoctors?searchType='"+name+"'&searchTypeId="+id, {
+        headers: commonHeaders,
+      })
+      .pipe(
+        map((data) => {
+          console.log("data", data);
+          return data;
+        })
+      )
+      .pipe(
+        catchError((err) => {
+          console.log(err, "ERERER>>>>>>>>>>>>>>>>>");
+          return err;
+        })
+      );
+  }
+
+  
 }

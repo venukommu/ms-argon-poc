@@ -206,7 +206,7 @@
                             class="img-fluid rounded img-center shadow shadow-lg--hover "
                             />
                              <div class="pt-2">
-                                <button class="button2 btn btn-info btn-sm">{{ currentYear - (docInfo.practicingFrom | date:'yyyy')}} years of experience</button>
+                                <button class="button2 btn btn-info btn-sm">{{ currentYear - (docInfo.practicingFrom | date:'yyyy')}} years exp</button>
                             </div>  
                         </div>
                         <div class="col-md-5">
@@ -214,13 +214,13 @@
                             <h6 class="card-title">{{docInfo.firstName}} {{docInfo.lastName}}</h6>
                             <p class="card-text text-muted">{{docInfo.qualification}}</p>
                             <p class="card-text">
-                              <small >Physician</small>
+                              <small >{{docInfo.specializationType === 'Eye-specialist' ? 'Opthamologist' : docInfo.specializationType}}</small>
                           </p>
                             <!-- <p class="card-text">{{docInfo.prof}}</p> -->
                             <p class="card-text">
                                 <small >{{docInfo.languages}}</small></p>
                             <p class="card-text">
-                                <small >${{docInfo.consultation_fee}}</small>
+                                <small >${{docInfo.consultationFee}} Consultation fee</small>
                             </p>
                             </div>
                         </div>

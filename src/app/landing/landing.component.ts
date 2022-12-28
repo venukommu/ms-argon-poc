@@ -17,60 +17,6 @@ export class LandingComponent implements OnInit {
   public diagnosis: any;
   public symptoms:any;
 
-  specialitiesImgs = [
-    {
-      title: "Physician",
-      url: "/physicians",
-    },
-    {
-      title: "Gynaecologist",
-      url: "/gynaecologist",
-    },
-    {
-      title: "Pediatrician",
-      url: "/pediatrician",
-    },
-    {
-      title: "Orthopedician",
-      url: "/ortho",
-    },
-    {
-      title: "Eye-specialist",
-      url: "/eyespecialist",
-    },
-    {
-      title: "Physiotherapist",
-      url: "#",
-    },
-    {
-      title: "Dentist",
-      url: "/dentist",
-    }
-  ];
-
-  diagnosisImgs = [
-    {
-      title: "Migraine",
-      url: "/migraine-treatment-doctors",
-    },
-    {
-      title: "Diabetes",
-      url: "/diabetes-treatment-doctors",
-    },
-    {
-      title: "Thyroid",
-      url: "#",
-    },
-    {
-      title: "Heart-Health",
-      url: "#",
-    },
-    {
-      title: "COVID",
-      url: "/physicians",
-    },
-  ];
-
   focus: any;
   focus1: any;
 
@@ -78,6 +24,7 @@ export class LandingComponent implements OnInit {
 
     this.commonService.getSpecialties().subscribe((response) => {
       this.specializations = response['specializations'];
+      console.log(this.specializations);
     }); 
     this.commonService.getSymptoms().subscribe((response) => {
       this.symptoms = response['symptoms'];
@@ -183,17 +130,12 @@ export class LandingComponent implements OnInit {
 
   bubblyButtons = document.getElementsByClassName("button");
 
-  splRoute(name){
-    var url;
-    for( let spl of this.specialitiesImgs){
-      if (spl.title === name){
-        url = spl.url;
-      }
-    }
-    console.log("url",url);
+  splRoute(name, id){
     const naviagtionExtras: NavigationExtras = {
       queryParams: {
-        routeName: url,
+        routeName: "physicians",
+        Name: name,
+        Id: id
       },
     };
     console.log("this.userName",this.userName);
@@ -201,31 +143,36 @@ export class LandingComponent implements OnInit {
       this.router.navigateByUrl("/signin", naviagtionExtras);
     } else {
       setTimeout(() => {
-        this.router.navigateByUrl(url);
+        this.router.navigateByUrl('/physicians', naviagtionExtras);
       }, 500);
     }
   }
 
-  diagRoute(name){
-    var url;
-    for( let spl of this.diagnosisImgs){
-      if (spl.title === name){
-        url = spl.url;
+   getDocList(name,id){
+    if(name === 'Migraine'){
+      var diagTitle = 'Neurologist';
+    } else if(name === 'Diabetes' || name === 'Thyroid'){
+      var diagTitle = 'Endocrinologist';
+    } else if(name === 'Heart-Health'){
+      var diagTitle = 'Cardiologist';
+    }else if(name === 'COVID'){
+      var diagTitle = 'Physician';
+    }
+
+  
+      const naviagtionExtras: NavigationExtras = {
+        queryParams: {
+          routeName: "diagnosis-docs",
+          Id: id,
+          Title: diagTitle
+        },
+      };
+      if (this.userName === undefined) {
+        this.router.navigateByUrl("/signin", naviagtionExtras);
+      } else {
+        setTimeout(() => {
+          this.router.navigateByUrl("/diagnosis-docs", naviagtionExtras);
+        }, 500);
       }
-    }
-    const naviagtionExtras: NavigationExtras = {
-      queryParams: {
-        routeName: url,
-      },
-    };
-    if (this.userName === undefined) {
-      this.router.navigateByUrl("/signin", naviagtionExtras);
-    } else {
-      setTimeout(() => {
-        this.router.navigateByUrl(url);
-      }, 500);
-    }
   }
-
-
 }

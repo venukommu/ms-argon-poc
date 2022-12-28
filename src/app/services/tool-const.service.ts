@@ -25,6 +25,7 @@ const errorMessages = {
   pleaseEnterValidPassword: "Please Enter valid Password",  
   updateFailed:"Update Failed",
   fillRequiredElements: 'Please fill required elements',
+  savingFailed: "Doc Specialization Saving Failed"
 };
 
 const successMessage = {
