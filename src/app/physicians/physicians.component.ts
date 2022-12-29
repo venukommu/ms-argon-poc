@@ -71,6 +71,12 @@ export class PhysiciansComponent implements OnInit {
         this.doctorsList = response['doctorsList'];
       });
     }
+    if (splParams?.symtomData){
+      this.commonService.getDoctorsList('symptoms',1).subscribe((response) => {
+        console.log("response", response);
+        this.doctorsList = response['doctorsList'];
+      });
+    }
   }
 
   openPopup() {
