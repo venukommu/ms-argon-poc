@@ -1,7 +1,7 @@
 import { Component, OnDestroy, OnInit } from "@angular/core";
 import { Router, NavigationEnd, NavigationStart, NavigationExtras } from "@angular/router";
 import { Location, PopStateEvent } from "@angular/common";
-import { AuthService } from "src/app/services/auth.service";
+import { CommonService } from "src/app/services/common.service";
 
 @Component({
   selector: "app-navbar",
@@ -20,9 +20,10 @@ export class NavbarComponent implements OnInit, OnDestroy {
   constructor(
     public location: Location,
     private router: Router,
-    public authService: AuthService
+    private commonService: CommonService
   ) {
-    // this.token = this.authService.getToken();
+
+    this.token = this.commonService.getToken();
 
     setTimeout(() => {
       clearInterval(this.timer);
