@@ -72,7 +72,7 @@ export class PhysiciansComponent implements OnInit {
       });
     }
     if (splParams?.symtomData){
-      this.commonService.getDoctorsList('symptoms',1).subscribe((response) => {
+      this.commonService.getDoctorsList(splParams?.symtomData[0].specializationType,splParams?.symtomData[0].specializationTypeId).subscribe((response) => {
         console.log("response", response);
         this.doctorsList = response['doctorsList'];
       });

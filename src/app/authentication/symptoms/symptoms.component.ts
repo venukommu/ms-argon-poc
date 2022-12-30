@@ -30,7 +30,6 @@ export class SymptomsComponent implements OnInit {
 
     this.commonService.getSymptoms().subscribe((response) => {
       this.symptoms = response['symptoms'];
-      console.log('this.symptoms',this.symptoms);
       this.selectedIssue = this.symptoms.filter((item) => {
         if (this.selectedIssues.includes(item.symptomDescription)){
           return item !== undefined ;
@@ -46,7 +45,6 @@ export class SymptomsComponent implements OnInit {
           return item !== undefined ;
         }
       });
-      console.log("selectedIssue",this.selectedIssue);
     });
   }
 
@@ -70,11 +68,10 @@ export class SymptomsComponent implements OnInit {
     if (isChecked) {
       this.docSym.push({'specializationType': 'symptoms', 'specializationTypeId': id})
     } else {
-      if (this.docSym.find(x => x.specializationType === 'Symptoms' && x.specializationTypeId === id)) {
+      if (this.docSym.find(x => x.specializationType === 'symptoms' && x.specializationTypeId === id)) {
         this.docSym.splice(this.docSym.findIndex(x => x.specializationType === 'Symptoms' && x.specializationTypeId === id), 1);
       }
     }
-    console.log("this.docSym",this.docSym);
   }
 
 }
