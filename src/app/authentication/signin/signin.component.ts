@@ -129,6 +129,8 @@ export class SigninComponent implements OnInit {
         if (result["status"] === "Bad credentials") {
           console.log("result['status']", result["status"]);
           this.notificationService.showNotification(result["status"], "danger");
+        } else if (result["status"] === "Email does not exist"){
+          this.notificationService.showNotification(result["status"], "danger");
         } else {
           var currentUser = JSON.parse(
             JSON.stringify(localStorage.getItem("currentUser"))
