@@ -140,5 +140,57 @@ export class CommonService {
       );
   }
 
+  getProvidersData(id) {
+    var token = this.getToken();
+    const httpOptions = { 
+      headers: new HttpHeaders(
+      { 
+        "Content-Type": "application/json",
+        'Authorization': "Bearer "+token
+      
+      })
+    };
+    return this.httpClient
+      .get(this.fullUrl + "/getDoctorProfile?userId="+id, httpOptions
+      )
+      .pipe(
+        map((data) => {
+          return data;
+        })
+      )
+      .pipe(
+        catchError((err) => {
+          console.log(err, "ERERER>>>>>>>>>>>>>>>>>");
+          return err;
+        })
+      );
+  }
+
+  getPatientsData(id) {
+    var token = this.getToken();
+    const httpOptions = { 
+      headers: new HttpHeaders(
+      { 
+        "Content-Type": "application/json",
+        'Authorization': "Bearer "+token
+      
+      })
+    };
+    return this.httpClient
+      .get(this.fullUrl + "/getProfile?userId="+id, httpOptions
+      )
+      .pipe(
+        map((data) => {
+          return data;
+        })
+      )
+      .pipe(
+        catchError((err) => {
+          console.log(err, "ERERER>>>>>>>>>>>>>>>>>");
+          return err;
+        })
+      );
+  }
+
   
 }

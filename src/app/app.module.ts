@@ -28,6 +28,7 @@ import { ProviderRegistrationComponent } from "./provider-registration/provider-
 import { AuthService } from "./services/auth.service";
 import { HttpClientModule } from "@angular/common/http";
 import { EditprofileComponent } from "./pages/editprofile/editprofile.component";
+import {DatePipe} from '@angular/common';
 
 @NgModule({
   declarations: [
@@ -62,6 +63,7 @@ import { EditprofileComponent } from "./pages/editprofile/editprofile.component"
     ToolConstService,
     MatNativeDateModule,
     NavbarComponent,
+    DatePipe
   ],
   bootstrap: [AppComponent],
 })

@@ -5,6 +5,8 @@ import { AuthService } from "src/app/services/auth.service";
 import { NotificationsService } from "src/app/services/notifications.service";
 import { ToolConstService } from "src/app/services/tool-const.service";
 import { WhitespaceValidator } from 'src/app/services/validators/whitespace.validator';
+import { CommonService } from 'src/app/services/common.service';
+import { DatePipe } from '@angular/common';
 
 @Component({
   selector: 'app-editprofile',
@@ -19,11 +21,17 @@ export class EditprofileComponent implements OnInit {
   states: any = ['Andhra Pradesh', 'Arunachal Pradesh', 'Assam', 'Bihar'];
   cities: any = ['Vijayawada', 'Visakhapatnam', 'Vizianagaram', 'Rajahmundry'];
   public userId:any;
+  public userDetails: any;
+  public providerDetails:any;
+  public isMale: boolean;
+  public isFemale:boolean;
+  public isEdit: boolean;
 
   constructor(private formBuilder: FormBuilder,private authService: AuthService,
     private notificationService: NotificationsService,
     private toolConst: ToolConstService,
-    private router: Router) { 
+    private router: Router, private commonService: CommonService,
+    private datePipe: DatePipe) { 
       this.editForm = this.formBuilder.group({
         firstName: ['', Validators.compose([
           Validators.required,
@@ -69,10 +77,62 @@ export class EditprofileComponent implements OnInit {
       }); 
 
       var currentUser = JSON.parse(localStorage.getItem("currentUser"));
-      console.log("currentUser", currentUser.name)
       this.userName = currentUser.name;
       this.role = currentUser.role;
       this.userId = currentUser.userId;
+      this.isEdit = false;
+
+     if(this.role !== 'Doctor'){
+      this.commonService.getPatientsData(this.userId).subscribe((res) => {
+        if (res['userAccDet'] !== null) {
+            this.userDetails = res['userAccDet'];
+            this.isEdit = true;
+        if(this.userDetails.gender === 'M'){
+          this.isMale = true
+          this.isFemale = false
+        }else{
+          this.isMale = false
+          this.isFemale = true
+        }
+        this.editForm.patchValue({
+            firstName: this.userDetails.firstName,
+            lastName: this.userDetails.lastName,
+            middleName: this.userDetails.middleName,
+            city: this.userDetails.city,
+            state: this.userDetails.state,
+            gender: this.userDetails.gender === 'M'? this.isMale: this.isFemale,
+        });
+        }
+      });
+    }else{
+       this.commonService.getProvidersData(this.userId).subscribe((res) => {
+        if (res['doctorProfile'] !== null) {
+            this.providerDetails = res['doctorProfile'];
+        this.isEdit = true;
+       // this.providerDetails.practicingFrom = this.datePipe.transform(this.providerDetails.practicingFrom,"yyyy-MM-dd")
+        if(this.providerDetails.gender === 'M'){
+          this.isMale = true
+          this.isFemale = false
+        }else{
+          this.isMale = false
+          this.isFemale = true
+        }
+        this.editProviderForm.patchValue({
+            firstName: this.providerDetails.firstName,
+            lastName: this.providerDetails.lastName,
+            city: this.providerDetails.city,
+            state: this.providerDetails.state,
+            age: this.providerDetails.age,
+            gender: this.providerDetails.gender === 'M'? this.isMale: this.isFemale,
+            professinalStatement: this.providerDetails.professionalStatement,
+            practicingFrom: this.datePipe.transform(this.providerDetails.practicingFrom,"yyyy-MM-dd"),
+            language: this.providerDetails.languages,
+            qua: this.providerDetails.qualification,
+            price: this.providerDetails.consultationFee
+        });
+      }
+      });
+    }
     }  
 
     get m(){
@@ -107,7 +167,8 @@ editPatient() {
       middleName:  this.editForm.value.middleName,
       userId:      this.userId,
       state:       this.editForm.value.state,
-      city:        this.editForm.value.city
+      city:        this.editForm.value.city,
+      id:          this.isEdit? this.userDetails.id : 0 
     };
 
     this.authService.editPatient(body).subscribe((response) => {
@@ -128,6 +189,7 @@ editPatient() {
 }
 
 editProvider() {
+  console.log("in editProvider doctorId", this.providerDetails.doctorId)
   if (!this.editProviderForm.valid) {
     this.notificationService.showNotification(this.toolConst.getErrorMessages().fillRequiredElements, 'danger');
     return false;
@@ -149,7 +211,8 @@ editProvider() {
       city:                   this.editProviderForm.value.city,
       qualification:          this.editProviderForm.value.qua,
       languages:              this.editProviderForm.value.language,
-      consultationFee:       this.editProviderForm.value.price, 
+      consultationFee:        this.editProviderForm.value.price, 
+      doctorId:               this.isEdit? this.providerDetails.doctorId : 0 
     };
  
     this.authService.editProvider(body).subscribe((response) => {
