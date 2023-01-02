@@ -77,7 +77,6 @@ export class EditprofileComponent implements OnInit {
       }); 
 
       var currentUser = JSON.parse(localStorage.getItem("currentUser"));
-      console.log("currentUser", currentUser)
       this.userName = currentUser.name;
       this.role = currentUser.role;
       this.userId = currentUser.userId;
@@ -85,7 +84,6 @@ export class EditprofileComponent implements OnInit {
 
      if(this.role !== 'Doctor'){
       this.commonService.getPatientsData(this.userId).subscribe((res) => {
-        console.log("res", res)
         if (res['userAccDet'] !== null) {
             this.userDetails = res['userAccDet'];
             this.isEdit = true;
@@ -153,13 +151,6 @@ submitData(){
 }
 
 editPatient() {
-  console.log("firstname", this.editForm.value.firstName);
-  console.log("gender",this.editForm.value.gender );
-  console.log("last name", this.editForm.value.lastName );
-  console.log("mname", this.editForm.value.middleName)
-  console.log("state", this.editForm.value.state)
-  console.log("city",this.editForm.value.city)
-  console.log("user id", this.userId)
   if (!this.editForm.valid) {
     this.notificationService.showNotification(this.toolConst.getErrorMessages().fillRequiredElements, 'danger');
     return false;

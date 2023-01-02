@@ -150,13 +150,11 @@ export class CommonService {
       
       })
     };
-    console.log("getPatientsData", id)
     return this.httpClient
       .get(this.fullUrl + "/getDoctorProfile?userId="+id, httpOptions
       )
       .pipe(
         map((data) => {
-          console.log("getProvidersData", data);
           return data;
         })
       )
@@ -178,13 +176,11 @@ export class CommonService {
       
       })
     };
-    console.log("getPatientsData", id)
     return this.httpClient
       .get(this.fullUrl + "/getProfile?userId="+id, httpOptions
       )
       .pipe(
         map((data) => {
-          console.log("getPatientsData", data);
           return data;
         })
       )
